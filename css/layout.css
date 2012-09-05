@@ -1,0 +1,115 @@
+/* Base Clases */
+.hidden { visibility: hidden; }
+.align-right { text-align: right; }
+.margin { margin: 6px 0; }
+.block { display: block; width: 100%; }
+.floatLeft { float: left; }
+.floatRight { float: right; }
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.relative { position: relative; }
+.col2 { width: 50%; }
+.col3 { width: 33%; }
+
+
+body { background: #e0e0e0; }
+
+/* Table */
+.table { display: table; width: 800px; }
+.table-row { display: table-row; }
+.table-cell { display: table-cell; padding: 3px 3px; font-size: 10pt; }
+
+.list td { border-top: 1px solid #e0e0e0; height: 18px; padding: 2px 0px 2px 6px; }
+.list thead tr td { border: 0 none; }
+	.list .date { width: 80px; }
+	.list .time { width: 50px; }
+	.list .hours { width: 24px; }
+	.list .project, .list .category { min-width: 120px; }
+
+/* Timelog table */
+.timelog:hover .hidden { visibility: visible;}
+.list .day-total { font-weight: bold; color: #444; }
+.list tr:nth-child(odd) td	{ background-color:#fff; }
+.list tr:nth-child(even) td { background-color:#f0f0f0; }
+.list .timelog td:first-child { background: none; border-right: 1px solid #ccc; border-top: 0px; }
+.list .timelog td { font-size: 9pt; }
+.day-total+.timelog lol { 
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.2)), color-stop(40%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+#TimelogList .last-child td lol  { 
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.2) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(60%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.2))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.2) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.2) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.2) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.2) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#33000000',GradientType=0 ); /* IE6-9 */
+}
+.timelog .notes .truncated { 
+	display: block; 
+	cursor: pointer;
+/*	padding-left: 20px; background: transparent url(../images/icons/comment.png) no-repeat scroll 0px -2px;*/
+}
+
+/* Forms */
+.inlineLabel { position: relative; clear: both; }
+	.inlineLabel input { width: 100%; text-align: right; }
+	.inlineLabel label { position: absolute; top: 3px; left: 6px; }
+select { text-align: center; }
+
+/* Header */
+#Header { 
+	padding: 10px 20px 0; 
+	background: #333; color: #fff;
+	border-bottom: 3px solid #f5f5f5; /* Same color as current menu item background */
+/*	box-shadow: 0px 0px 5px #666;*/
+	position: relative; 
+	height: 50px;
+}
+	#Header h1 { margin: 10px 0; }
+	
+	/* Main Navigation */
+	#MainNavigation { position: absolute; right: 20px; bottom: 0px; }
+	#MainNavigation li { float: left; margin-right: 2px; }
+		#MainNavigation li a { color: #333; text-decoration: none; padding: 7px 10px 4px; background: #ccc; display: block; }
+		#MainNavigation li.current a { background: #f5f5f5; color: #666; }
+
+/* Layout */
+#Layout { padding: 0 10px; }
+	#Layout .table { width: 100%; }
+#LeftCol { display: block; background: #fff; padding: 3px 10px 10px; }
+#RightCol { width: 320px; }
+	.actionButtons input { float: left; }
+
+/* Buttons */
+.button { 
+	padding: 6px 10px 2px 6px; background: #e0e0e0;  
+/*	font-weight: bold;*/
+	color: #808080; text-decoration: none; 
+/*	text-shadow: -1px -1px 0px #666; */
+	border-radius: 7px;
+	box-shadow: 0px 1px 1px #666;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #f0f0f0,  #ccc);
+	text-transform: capitalize;
+}
+.addButton { position: absolute; right: 10px; top: 10px; }
+	.addButton span { padding-left: 24px; background: url(../images/icons/add.png) no-repeat scroll 1px -1px; }
+/*
+.iconButton { height: 24px; }
+.iconClock { background: url(../images/icons/clock.png) no-repeat scroll 8px 2px; }
+.iconClockRed { background: url(../images/icons/clock_red.png) no-repeat scroll 8px 2px; }
+*/
+
+textarea { font: inherit; font-size: 0.9em; padding: 2px; }
