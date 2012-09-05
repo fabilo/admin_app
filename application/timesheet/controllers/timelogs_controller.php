@@ -140,23 +140,48 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	}
 
 	/** 
-	 *	Get all timelogs for day 
+	 *	Get all timelogs for day and output 
+	 *	Should be called via ajax
 	 */
 	public function day($date, $return_html=false) {
 		$data = array(
 				'timelogs' => $this->_timelog_factory->getForDate($date),
-				'totals' => array_pop($this->_timelog_factory->getDayTotalsByDateRange($date, $date)),
-				'timelog_edit_url' => site_url('timelogs/edit/'),
-				'base_uri' => base_url()
+				'totals' => array_pop($this->_timelog_factory->getDayTotalsByDateRange($date, $date))
 		);
-		$html = $this->load->view('timelog/partial/day', $data, true);
-		if ($return_html) return $html; // return html
-		else die($html); // simply output html
+		
+		// return html
+		if ($return_html) return $this->display('timelog/partial/day', $data, array('return_html'=>true));
+
+		// otherwise display
+		$this->display('timelog/partial/day', $data);
 	}
 	
+	/**
+	 *	Get notes for a timelog and echo them
+	 *	Should be called via Ajax
+	 */
 	public function getNotes($id) {
 		// get timelog to view note
 		$timelog = $this->_timelog_factory->getById($id);
 		die($timelog->getNotes());
+	}
+	
+	/**
+	 * 	Change current timelog in session and return html for sidebar form for that timelog
+	 */
+	public function changeSidebarFormTimelog($timelog_id) {
+		try {
+			// get timelog 
+			if (!$timelog = $this->_timelog_factory->getById($timelog_id)) 
+				throw new Exception('Timelog not found for id: '.$timelog_id);
+
+			// update timelog in session
+			$_SESSION['current_timelog'] = $timelog;
+			// display timelog form html
+			$this->display('blank', array('body'=>$this->getTimelogSidebarFormHtml($timelog)));
+		} 
+		catch (Exception $e) {
+			show_404();
+		}
 	}
 }

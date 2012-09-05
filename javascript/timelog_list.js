@@ -2,13 +2,13 @@ function refreshTimelog(date) {
 	// ajax and get the day & timelogs html 
 	$.ajax({
 	  url: '/admin/timesheet.php/timelogs/day/'+date,
-	}).success(function(e){
+	}).success(function(data){
 		// check if this timelog's day already exists? 
 		if ($('#'+date).length) {
 			// remove old timelogs for this day
 			$('.timelog-'+date).remove();
 			// replace timelog element with new html
-			$('#'+date).replaceWith(e);
+			$('#'+date).replaceWith(data);
 		}
 		else {
 			// check that this timelog fits in list's current date range 
@@ -19,6 +19,10 @@ function refreshTimelog(date) {
 		}
 		// reapply click event handler
 		$('#'+date).click(timelogListClick);
+		// apply the show timelog notes click event
+		$('.timelog-'+date+' .truncated').click(timelogNotesClick);
+		// apply show timelog in sidebar click event
+		$('.timelog-'+date+' .showInSidebar').click(showTimelogInSidebar);
 	});
 }
 
@@ -37,8 +41,23 @@ function timelogNotesClick() {
 	var id = $(this).attr('id').substring(6);
 	$.ajax({
 	  url: '/admin/timesheet.php/timelogs/getNotes/'+id,
-	}).success(function(e){
-		alert(e);
+	}).success(function(data){
+		// output notes to browser
+		alert(data);
+	});
+}
+
+/**
+ *	Click event callback for displaying a timelog in the sidebar via Ajax
+ */
+function showTimelogInSidebar(e) {
+	// cancel anchor click
+	e.preventDefault();
+	// get form html 
+	$.ajax({
+	  url: $(this).attr('href'),
+	}).success(function(data){
+		$('#RightCol').html(data);
 	});
 }
 
@@ -47,4 +66,6 @@ $(document).ready(function() {
 	$('.day-total').click(timelogListClick);
 	// expand notes click
 	$('.timelog .notes .truncated').click(timelogNotesClick);
+	// display timelog in sidebar
+	$('.timelog .showInSidebar').click(showTimelogInSidebar);
 });

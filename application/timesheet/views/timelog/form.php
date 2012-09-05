@@ -10,7 +10,7 @@
 <p class="error"><?php echo $error ?></p>
 <?php endif ?>
 
-<form id="<?php echo $ajax ? 'TimelogAjaxForm' : '' ?>" method="post" action="<?php echo $base_uri ?>/timelogs/save" style="width: 300px">
+<form id="<?php echo $ajax ? 'TimelogAjaxForm' : '' ?>" method="post" action="<?php echo dirname($top_uri) ?>/timelogs/save" style="width: 300px">
 	
 	<div class="actionButtons">
 		<input class="col2 iconButton iconClock" type="submit" name="start_now" value="Start" <?php echo $timelog->isNew() ? '' : 'DISABLED' ?>/>
