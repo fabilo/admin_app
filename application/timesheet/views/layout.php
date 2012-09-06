@@ -9,10 +9,13 @@
 	<meta name="author" content="Fabian Snaith">
 	<base href="<?php echo $base_uri ?>"/>
 	<!-- Date: 2012-08-16 -->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="css/layout.css"/>
 	<link rel="stylesheet" type="text/css" href="css/typography.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="javascript/jquery-ui-1.8.23.custom/css/smoothness/jquery-ui-1.8.23.custom.css"/>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	<script src="javascript/jquery-ui-1.8.23.custom/js/jquery-ui-1.8.23.custom.min.js"></script>
 </head>
 <body>
 <div id="Header">

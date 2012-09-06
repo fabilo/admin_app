@@ -13,8 +13,11 @@
 <form id="<?php echo $ajax ? 'TimelogAjaxForm' : '' ?>" method="post" action="<?php echo dirname($top_uri) ?>/timelogs/save" style="width: 300px">
 	
 	<div class="actionButtons">
-		<input class="col2 iconButton iconClock" type="submit" name="start_now" value="Start" <?php echo $timelog->isNew() ? '' : 'DISABLED' ?>/>
-		<input class="col2 iconButton iconClockRed" name="finish_now" type="Submit" value="Stop" class="clearfix"/>
+		<?php if ($timelog->isNew()): ?>
+		<input class="iconButtons block" type="submit" name="start_now" value="Start" />
+		<?php else: ?>
+		<input class="iconButton block" name="finish_now" type="Submit" value="Stop" class="clearfix"/>
+		<?php endif ?>
 	</div>
 	<?php if ($ajax): ?>
 	<input type="hidden" name="ajax" value="1"/>
@@ -58,9 +61,8 @@
 		<textarea name="timelog[notes]" placeholder="Notes/Comments" class="margin block"><?php echo $timelog->getNotes() ?></textarea>
 
 	<div class="actionButtons">
-			<input class="col3" name="cancel" type="Submit" value="<?php echo $timelog->isNew() ? 'Cancel' : 'Close' ?>"/>
-			<input class="col3" name="save" type="Submit" value="Save"/>
-			<input class="col3" name="save_and_new" type="Submit" value="Save & New" class="clearfix"/>
+			<input class="col2" name="cancel" type="Submit" value="<?php echo $timelog->isNew() ? 'Cancel' : 'Close' ?>"/>
+			<input class="col2" name="save" type="Submit" value="Save"/>
 	</div>
 	
 	<p class="loading hidden">Loading.<blink>.</blink></p>

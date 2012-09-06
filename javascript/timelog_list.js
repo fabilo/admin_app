@@ -23,6 +23,8 @@ function refreshTimelog(date) {
 		$('.timelog-'+date+' .truncated').click(timelogNotesClick);
 		// apply show timelog in sidebar click event
 		$('.timelog-'+date+' .showInSidebar').click(showTimelogInSidebar);
+		// 
+		// $('.timelog-'+date+' .editTimelog').click(editTimelog);
 	});
 }
 
@@ -43,8 +45,32 @@ function timelogNotesClick() {
 	  url: '/admin/timesheet.php/timelogs/getNotes/'+id,
 	}).success(function(data){
 		// output notes to browser
-		alert(data);
+		modal(data, 'Notes');
 	});
+}
+
+function editTimelog(e) {
+	e.preventDefault();
+	$.ajax({
+	  url: $(this).attr('href'),
+	}).success(function(data){
+		// output notes to browser
+		modal(data, 'Edit Timelog');
+	});
+}
+
+function modal(message, title='') {
+	$(document.body).prepend('<div id="dialog-message">'+message+'</div>');
+	
+	// pop modal
+	$( "#dialog-message" ).dialog({
+			modal: true,
+			title: title,
+			width: 500, 
+			close: function(event, ui) { 
+				$("#dialog-message").remove();
+			}
+		});	
 }
 
 /**
@@ -68,4 +94,6 @@ $(document).ready(function() {
 	$('.timelog .notes .truncated').click(timelogNotesClick);
 	// display timelog in sidebar
 	$('.timelog .showInSidebar').click(showTimelogInSidebar);
+	// edit timelog modal 
+	// $('.editTimelog').click(editTimelog);
 });
