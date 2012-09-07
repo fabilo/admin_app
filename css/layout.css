@@ -103,5 +103,7 @@ select { text-align: center; }
 textarea { font: inherit; font-size: 0.9em; padding: 2px; }
 
 /* jquery UI */
-.ui-widget, .ui-widget-content { line-height: 1.2em; font-size: 9pt; }
+/* Dialog modals */
+body .ui-widget, .ui-widget-content { line-height: 1.2em; font-size: 9pt; }
 .ui-widget-header { font-size: 10pt; }
+/* Datepicker */

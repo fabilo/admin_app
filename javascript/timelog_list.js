@@ -23,8 +23,6 @@ function refreshTimelog(date) {
 		$('.timelog-'+date+' .truncated').click(timelogNotesClick);
 		// apply show timelog in sidebar click event
 		$('.timelog-'+date+' .showInSidebar').click(showTimelogInSidebar);
-		// 
-		// $('.timelog-'+date+' .editTimelog').click(editTimelog);
 	});
 }
 

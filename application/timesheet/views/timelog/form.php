@@ -28,7 +28,7 @@
 	
 	<div class="inlineLabel margin">
 		<label for="DateInput">Date:</label>
-		<input id="DateInput" type="text" name="timelog[date]" maxlength="10" placeholder="2012-08-21" pattern="^20[0-9]{2}-(0[1-9]|1[0-2])-(([0-2][0-9])|30|31)$" value="<?php echo $timelog->getDate() ?>"/>			
+		<input id="DateInput" class="dateInput" type="text" name="timelog[date]" maxlength="10" placeholder="2012-08-21" pattern="^20[0-9]{2}-(0[1-9]|1[0-2])-(([0-2][0-9])|30|31)$" value="<?php echo $timelog->getDate() ?>"/>			
 	</div>
 
 	<div class="inlineLabel margin">

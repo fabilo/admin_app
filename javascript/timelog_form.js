@@ -1,4 +1,10 @@
 $(document).ready(function(){ 
+	// setup datepicker 
+	$(".dateInput").datepicker({
+		dateFormat: 'yy-mm-dd',
+	
+	});
+	
 	// setup submit buttons to update a hidden input since submit buttons aren't included in jQuery serialize
 	$('#TimelogAjaxForm').prepend('<input id="SubmitHiddenInput" type="hidden" name="submit" value="" />');
 	$('#TimelogAjaxForm input[type=submit]').each(function(){
@@ -25,20 +31,20 @@ $(document).ready(function(){
 	
 		// ajax submit form
 		$.ajax({
-					type:'POST', 
-					url: $(this).attr('action'), 
-					data: postString, 
-					success: function(data) {
-			    	// update form in sidebar
-						$('#RightCol').html(data);
-						
-						// check if the timelog list is available
-						if ($('#TimelogList').length) {
-							// now reload item in list
-							refreshTimelog($('#DateInput').val());
-						}
+				type:'POST', 
+				url: $(this).attr('action'), 
+				data: postString, 
+				success: function(data) {
+		    	// update form in sidebar
+					$('#RightCol').html(data);
+					
+					// check if the timelog list is available
+					if ($('#TimelogList').length) {
+						// now reload item in list
+						refreshTimelog($('#DateInput').val());
 					}
-			});
+				}
+		});
 	});
 
 	// setup the form to save on change 
