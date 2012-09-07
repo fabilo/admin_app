@@ -2,7 +2,6 @@ $(document).ready(function(){
 	// setup datepicker 
 	$(".dateInput").datepicker({
 		dateFormat: 'yy-mm-dd',
-	
 	});
 	
 	// setup submit buttons to update a hidden input since submit buttons aren't included in jQuery serialize
@@ -21,29 +20,32 @@ $(document).ready(function(){
 		e.preventDefault();
 	
 		// display loading icon
-		$(this).append('<p class="loading">Loading.<blink>.</blink></p>');
+		$(this).append('<p class="saving align-center">Saving.<blink>.</blink></p>');
 	
 		// capture post string before we disable the inputs
 		var postString = $(this).serialize();
 	
-		// disable form inputs
-		$('#TimelogAjaxForm input, #TimelogAjaxForm textarea, #TimelogAjaxForm select').attr('disabled','true');
-	
 		// ajax submit form
 		$.ajax({
-				type:'POST', 
-				url: $(this).attr('action'), 
-				data: postString, 
-				success: function(data) {
-		    	// update form in sidebar
-					$('#RightCol').html(data);
-					
-					// check if the timelog list is available
-					if ($('#TimelogList').length) {
-						// now reload item in list
-						refreshTimelog($('#DateInput').val());
-					}
+			type:'POST', 
+			url: $(this).attr('action'), 
+			data: postString, 
+			success: function(data) {
+				if (data == 'success') {
+					// output was success - remove loading message
+					$('#TimelogAjaxForm .saving').fadeOut(1500);
 				}
+				else {
+					// update form in sidebar
+					$('#RightCol').html(data);
+				}
+				
+				// check if the timelog list is available
+				if ($('#TimelogList').length) {
+					// now reload item in list
+					refreshTimelog($('#DateInput').val());
+				}
+			}
 		});
 	});
 

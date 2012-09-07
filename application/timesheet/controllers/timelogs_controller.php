@@ -99,27 +99,20 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 			
 			// check for ajax request
 			if ($this->_isAjax) { 
-				if ($this->input->post('save_and_new')) {
-					// user wants to display new timelog 
-					$timelog = new Timelog();
-				}
-				
 				// update session with timelog
 				 $_SESSION['current_timelog'] = $timelog;
-				log_message('info', 'saving timelog to session');
+				
+				// output 'success' for successful ajax submission
+				die('success');
 				
 				// now display form
-				$this->displayForm($timelog);
+				// $this->displayForm($timelog);
 			}
 			else {
 				// not ajax request 
 				
-				// check for save & new button pressed
-				if ($this->input->post('save_and_new')) {
-					redirect('/timelogs/add/', 'refresh');
-				}
 				// check for cancel button pressed
-				elseif ($this->input->post('cancel')) {
+				if ($this->input->post('cancel')) {
 					redirect('/timelogs/', 'refresh');
 				}
 

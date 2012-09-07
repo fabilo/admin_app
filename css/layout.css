@@ -1,6 +1,7 @@
 /* Base Clases */
 .hidden { visibility: hidden; }
 .align-right { text-align: right; }
+align-center { text-align: center; }
 .margin { margin: 6px 0; }
 .block { display: block; width: 100%; }
 .floatLeft { float: left; }
