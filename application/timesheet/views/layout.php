@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="css/typography.css"/>
 	
 	<link rel="stylesheet" type="text/css" href="javascript/jquery-ui-1.8.23.custom/css/smoothness/jquery-ui-1.8.23.custom.css"/>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="javascript/jquery-ui-1.8.23.custom/js/jquery-1.7.2.min.js"></script>
 	<script src="javascript/jquery-ui-1.8.23.custom/js/jquery-ui-1.8.23.custom.min.js"></script>
 </head>
 <body>

@@ -1,7 +1,7 @@
 function refreshTimelog(date) {
 	// ajax and get the day & timelogs html 
 	$.ajax({
-	  url: '/admin/timesheet.php/timelogs/day/'+date,
+	  url: 'timesheet.php/timelogs/day/'+date,
 	}).success(function(data){
 		// check if this timelog's day already exists? 
 		if ($('#'+date).length) {
@@ -42,7 +42,7 @@ function timelogListClick() {
 function timelogNotesClick() {
 	var id = $(this).attr('id').substring(6);
 	$.ajax({
-	  url: '/admin/timesheet.php/timelogs/getNotes/'+id,
+	  url: 'timesheet.php/timelogs/getNotes/'+id,
 	}).success(function(data){
 		// output notes to browser
 		modal(data, 'Notes');
@@ -59,7 +59,7 @@ function editTimelog(e) {
 	});
 }
 
-function modal(message, title='') {
+function modal(message, title) {
 	$(document.body).prepend('<div id="dialog-message">'+message+'</div>');
 	
 	// pop modal

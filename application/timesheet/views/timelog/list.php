@@ -44,5 +44,4 @@
 		</table>
 		<p>No timelogs found for date range.</p>
 	<?php endif ?>
-
-<script type="text/javascript" src="javascript/timelog_list.js?<?php echo time() ?>"></script>
+	<script type="text/javascript" src="javascript/timelog_list.js"></script>

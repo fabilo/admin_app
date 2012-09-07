@@ -1,6 +1,7 @@
 <?php
 // need to set include path for including the base controller classes
-set_include_path(get_include_path().'/Users/fabilo/shared_package/');
+set_include_path(get_include_path().PATH_SEPARATOR.'e:/Webroot/fabian2/shared_package/'.PATH_SEPARATOR.dirname(__FILE__));
+// die(get_include_path());
 
 /*
  *---------------------------------------------------------------
@@ -58,7 +59,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = '/Users/fabilo/CodeIgniter-system';
+	$system_path = 'e:/Webroot/fabian2/CodeIgniter-system';
 
 /*
  *---------------------------------------------------------------
