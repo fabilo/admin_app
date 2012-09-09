@@ -59,7 +59,7 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	public function save() {
 		try {
 			// check if cancel button pressed
-			if ($this->input->post('cancel')) {
+			if ($this->input->post('submit') == 'Cancel') {
 				// cancel saving timelog in form, just display form for a new timelog
 				$timelog = new Timelog();
 			}
@@ -73,14 +73,14 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 				$timelog = new Timelog($obj);
 			
 				// check if start now button has been pushed
-				if ($this->input->post('start_now')) {
+				if ($this->input->post('submit') == 'Start') {
 					$timelog->setDate(date('Y-m-d'));
 					$timelog->setStartTime(date('H:i'));
 				}
 			
 				if ($timelog->getId()) {
 					// update timelog
-					if ($this->input->post('finish_now')) {
+					if ($this->input->post('submit') == 'Stop') {
 						// set end time to now
 						$timelog->setEndTime(Date('H:i'));
 					}
@@ -102,11 +102,22 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 				// update session with timelog
 				 $_SESSION['current_timelog'] = $timelog;
 				
-				// output 'success' for successful ajax submission
-				die('success');
-				
-				// now display form
-				// $this->displayForm($timelog);
+				// check how form was submitted and if we need to reload the form
+				switch ($this->input->post('submit')) {
+					case 'Cancel':
+					case 'Close': 
+						// user pushed the cancel button, display form with new timelog
+						$timelog = new Timelog(); 
+					case 'Start': 
+					case 'Stop': 
+						$this->displayForm($timelog);
+						break;
+						
+					default: 
+						// output 'success' for successful ajax submission
+						die('success');
+						break;
+				}
 			}
 			else {
 				// not ajax request 

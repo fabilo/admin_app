@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$('#TimelogAjaxForm').prepend('<input id="SubmitHiddenInput" type="hidden" name="submit" value="" />');
 	$('#TimelogAjaxForm input[type=submit]').each(function(){
 		$(this).click(function(){
-			$('#TimelogAjaxForm #SubmitHiddenInput').attr('name',this.name);
+			// $('#TimelogAjaxForm #SubmitHiddenInput').attr('name',this.name);
 			$('#TimelogAjaxForm #SubmitHiddenInput').attr('value',this.value);
 		});
 	});
@@ -53,6 +53,9 @@ $(document).ready(function(){
 	$('#TimelogAjaxForm input, #TimelogAjaxForm select, #TimelogAjaxForm textarea').change(function(){		
 		// only post form if it's not a new timelog form
 		if ($('#TimelogIdInput').length) {
+			// submit button hasn't been pressed - so remove the hidden input place holder values			
+			$('#TimelogAjaxForm #SubmitHiddenInput').attr('name','');
+			$('#TimelogAjaxForm #SubmitHiddenInput').attr('value','');
 			// form is valid, submit
 			$('#TimelogAjaxForm').submit();
 		}

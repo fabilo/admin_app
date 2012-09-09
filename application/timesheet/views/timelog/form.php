@@ -14,9 +14,9 @@
 	
 	<div class="actionButtons">
 		<?php if ($timelog->isNew()): ?>
-		<input class="iconButtons block" type="submit" name="start_now" value="Start" />
+		<input class="iconButtons block" type="submit" name="submit" value="Start" />
 		<?php else: ?>
-		<input class="iconButton block" name="finish_now" type="Submit" value="Stop" class="clearfix"/>
+		<input class="iconButton block" name="submit" type="Submit" value="Stop" class="clearfix"/>
 		<?php endif ?>
 	</div>
 	<?php if ($ajax): ?>
@@ -61,8 +61,8 @@
 		<textarea name="timelog[notes]" placeholder="Notes/Comments" class="margin block"><?php echo $timelog->getNotes() ?></textarea>
 
 	<div class="actionButtons">
-			<input class="col2" name="cancel" type="Submit" value="<?php echo $timelog->isNew() ? 'Cancel' : 'Close' ?>"/>
-			<input class="col2" name="save" type="Submit" value="Save"/>
+			<input class="col2" name="submit" type="Submit" value="<?php echo $timelog->isNew() ? 'Cancel' : 'Close' ?>"/>
+			<input class="col2" name="submit" type="Submit" value="Save"/>
 	</div>
 	
 	<p class="loading hidden">Loading.<blink>.</blink></p>
