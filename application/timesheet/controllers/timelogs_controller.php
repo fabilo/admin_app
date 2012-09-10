@@ -11,34 +11,22 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	 * Display list of timelogs
 	 */
 	public function index() {
-		$data = array(); // data for view 
-		
+		$data = array(); // data for view 		
 		$data['startDate'] = $start_date = date('Y-01-01');
 		$data['endDate'] = $end_date = date('Y-m-d');
 		if ($data['timelogs'] = $this->_timelog_factory->getDayTotalsByDateRange($start_date, $end_date)) {
 			$data['first_expaned_row_html'] = $this->day(array_shift($data['timelogs'])->getDate(), true);
 		}
+		// flash data not working at the moment.
+		$data['message'] = $this->session->flashdata('message');
 		$this->display('timelog/list', $data);
-	}
-
-	/** 
-	 *	Display form for a timelog
-	 *	@var $timelog (timelog class) - timelog to put into the form
-	 */
-	private function displayForm(timelog $timelog) {
-		$data = array(
-			'timelog' => $timelog,
-			'projects' => $this->_user->getVisibleProjects(new Project_Factory($this->_admin_db)), 
-			'categories' => $this->_user->getVisibleTimelogCategories(new Timelog_Categories_Factory($this->_admin_db))
-		);
-		$this->display('timelog/form', $data);
 	}
 	
 	/** 
 	 *	Display a form for a new timelog
 	 */
 	public function add() {
-		$this->displayForm(new Timelog());
+		$this->displayTimelogForm(new Timelog());
 	}
 	
 	/** display a form to edit a timelog
@@ -46,10 +34,16 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	 *	@var $id (int) - id for the timelog to edit
 	 */
 	public function edit($id) {
-		// get timelog to edit
-		$timelog = $this->_timelog_factory->getById($id);
+		try {
+			// get timelog to edit
+			$timelog = $this->_timelog_factory->getById($id);
 
-		$this->displayForm($timelog);
+			$this->displayTimelogForm($timelog);
+		}
+		catch (Exception $e) {
+			$this->session->set_flashdata('message', 'Couldn\'t find timelog with id: '.$id);
+			redirect('/timelogs/');
+		}
 	}
 	
 	/** 
@@ -57,7 +51,14 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	 *	Could be a normal timelog form submission, or an ajax submission from sidebar form
 	 */
 	public function save() {
-		try {
+		try {				
+			// chec if Delete button was pressed
+			if ($this->input->post('submit') == 'Delete') {
+				$obj = $this->input->post('timelog');
+				// attempt to delete timelog
+				return $this->delete($obj['id']);
+			}
+			
 			// check if cancel button pressed
 			if ($this->input->post('submit') == 'Cancel') {
 				// cancel saving timelog in form, just display form for a new timelog
@@ -77,9 +78,10 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 					$timelog->setDate(date('Y-m-d'));
 					$timelog->setStartTime(date('H:i'));
 				}
-			
+				
+				// timelog exists - update it
 				if ($timelog->getId()) {
-					// update timelog
+					
 					if ($this->input->post('submit') == 'Stop') {
 						// set end time to now
 						$timelog->setEndTime(Date('H:i'));
@@ -99,18 +101,19 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 			
 			// check for ajax request
 			if ($this->_isAjax) { 
-				// update session with timelog
-				 $_SESSION['current_timelog'] = $timelog;
+				if ($this->input->post('sidebar_form')) {
+						// update session with timelog
+						$_SESSION['current_timelog'] = $timelog;
+				}
 				
 				// check how form was submitted and if we need to reload the form
 				switch ($this->input->post('submit')) {
-					case 'Cancel':
-					case 'Close': 
-						// user pushed the cancel button, display form with new timelog
-						$timelog = new Timelog(); 
+					case 'Cancel': 
+						// user pushed the cancel button
+						// form will be displayed with new timelog set at start of function
 					case 'Start': 
 					case 'Stop': 
-						$this->displayForm($timelog);
+						$this->displayTimelogForm($timelog, $sidebar_form = $this->input->post('sidebar_form'));
 						break;
 						
 					default: 
@@ -122,13 +125,12 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 			else {
 				// not ajax request 
 				
-				// check for cancel button pressed
-				if ($this->input->post('cancel')) {
-					redirect('/timelogs/', 'refresh');
+				// check for anything button other than the cancel button pressed
+				if (!$this->input->post('submit') == 'Cancel') {
+					$this->session->set_flashdata('message', 'Timelog saved.');
 				}
-
-				// default redirect back to timelogs list	
-				redirect('/timelogs/edit/'.$timelog->getId(), 'refresh');
+				// redirect back to timelogs page
+				redirect('/timelogs/', 'refresh');
 			}
 		}
 		catch (Exception $e) {
@@ -140,6 +142,26 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 					'timelog' => $timelog,
 					'error' => 'Error saving timelog: '.$e->getMessage()
 			));
+		}
+	}
+	
+	/**
+	 *  Delete timelog 
+	 */
+	public function delete($id) {
+		try {			
+			// try delete timelog
+			$this->_timelog_factory->delete($id);
+		
+			// setup confirmation flash message
+			$this->session->set_flashdata('message', 'Successfully deleted timelog.');
+			
+			// redirect user
+			redirect('/timelogs/', 'refresh');
+		}
+		catch (Exception $e) {
+			$this->session->set_flashdata('message', 'There was an error deleting timelog: '.$e->getMessage());
+			redirect('/timelogs/edit/'.$id, 'refresh');
 		}
 	}
 
@@ -182,7 +204,7 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 			// update timelog in session
 			$_SESSION['current_timelog'] = $timelog;
 			// display timelog form html
-			$this->display('blank', array('body'=>$this->getTimelogSidebarFormHtml($timelog)));
+			$this->display('blank', array('body'=>$this->displayTimelogForm($timelog, $sidebar_form=true, $return_html=true)));
 		} 
 		catch (Exception $e) {
 			show_404();

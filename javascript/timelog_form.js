@@ -5,16 +5,16 @@ $(document).ready(function(){
 	});
 	
 	// setup submit buttons to update a hidden input since submit buttons aren't included in jQuery serialize
-	$('#TimelogAjaxForm').prepend('<input id="SubmitHiddenInput" type="hidden" name="submit" value="" />');
-	$('#TimelogAjaxForm input[type=submit]').each(function(){
+	$('#TimelogSidebarForm').prepend('<input id="SubmitHiddenInput" type="hidden" name="submit" value="" />');
+	$('#TimelogSidebarForm input[type=submit]').each(function(){
 		$(this).click(function(){
-			// $('#TimelogAjaxForm #SubmitHiddenInput').attr('name',this.name);
-			$('#TimelogAjaxForm #SubmitHiddenInput').attr('value',this.value);
+			$('#TimelogSidebarForm #SubmitHiddenInput').attr('name',this.name);
+			$('#TimelogSidebarForm #SubmitHiddenInput').attr('value',this.value);
 		});
 	});
 
 	// current timelog form in right hand side
-	$('#TimelogAjaxForm').submit(function(e){
+	$('#TimelogSidebarForm').submit(function(e){
 		// handle form submission
 		// prevent the form posting the form
 		e.preventDefault();
@@ -33,7 +33,7 @@ $(document).ready(function(){
 			success: function(data) {
 				if (data == 'success') {
 					// output was success - remove loading message
-					$('#TimelogAjaxForm .saving').fadeOut(1500);
+					$('#TimelogSidebarForm .saving').fadeOut(1500);
 				}
 				else {
 					// update form in sidebar
@@ -50,14 +50,14 @@ $(document).ready(function(){
 	});
 
 	// setup the form to save on change 
-	$('#TimelogAjaxForm input, #TimelogAjaxForm select, #TimelogAjaxForm textarea').change(function(){		
+	$('#TimelogSidebarForm input, #TimelogSidebarForm select, #TimelogSidebarForm textarea').change(function(){		
 		// only post form if it's not a new timelog form
 		if ($('#TimelogIdInput').length) {
 			// submit button hasn't been pressed - so remove the hidden input place holder values			
-			$('#TimelogAjaxForm #SubmitHiddenInput').attr('name','');
-			$('#TimelogAjaxForm #SubmitHiddenInput').attr('value','');
+			$('#TimelogSidebarForm #SubmitHiddenInput').attr('name','');
+			$('#TimelogSidebarForm #SubmitHiddenInput').attr('value','');
 			// form is valid, submit
-			$('#TimelogAjaxForm').submit();
+			$('#TimelogSidebarForm').submit();
 		}
 	});
 });

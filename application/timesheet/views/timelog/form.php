@@ -1,4 +1,4 @@
-<?php if (!$ajax): ?>
+<?php if (!$ajax && !$sidebar_form): ?>
 <h2>
 	<?php
 		echo ($timelog->isNew()) ? 'New' : 'Edit'
@@ -10,7 +10,7 @@
 <p class="error"><?php echo $error ?></p>
 <?php endif ?>
 
-<form id="<?php echo $ajax ? 'TimelogAjaxForm' : '' ?>" method="post" action="<?php echo dirname($top_uri) ?>/timelogs/save" style="width: 300px">
+<form id="Timelog<?php echo $sidebar_form  ? 'Sidebar' : ($ajax ? 'Ajax' : '') ?>Form" method="post" action="<?php echo dirname($top_uri) ?>/timelogs/save" style="width: 300px">
 	
 	<div class="actionButtons">
 		<?php if ($timelog->isNew()): ?>
@@ -19,8 +19,8 @@
 		<input class="iconButton block" name="submit" type="Submit" value="Stop" class="clearfix"/>
 		<?php endif ?>
 	</div>
-	<?php if ($ajax): ?>
-	<input type="hidden" name="ajax" value="1"/>
+	<?php if ($sidebar_form): ?>
+	<input type="hidden" name="sidebar_form" value="1"/>
 	<?php endif ?>
 	<?php if (!$timelog->isNew()): ?>
 	<input id="TimelogIdInput" type='hidden' name='timelog[id]' value='<?php echo $timelog->getId() ?>'/>
@@ -61,13 +61,16 @@
 		<textarea name="timelog[notes]" placeholder="Notes/Comments" class="margin block"><?php echo $timelog->getNotes() ?></textarea>
 
 	<div class="actionButtons">
-			<input class="col2" name="submit" type="Submit" value="<?php echo $timelog->isNew() ? 'Cancel' : 'Close' ?>"/>
+			<input class="col2" name="submit" type="Submit" value="Cancel"/>
 			<input class="col2" name="submit" type="Submit" value="Save"/>
+			<?php if (!$ajax && !$sidebar_form): ?>
+			<input class="block red" name="submit" onclick="return confirm('Are you sure you want to delete timelog?')" type="Submit" value="Delete"/>
+			<?php endif ?>
 	</div>
 	
 	<p class="loading hidden">Loading.<blink>.</blink></p>
 </form>
 
-<?php if ($ajax): ?>
+<?php if ($sidebar_form): ?>
 <script type="text/javascript" src="javascript/timelog_form.js"></script>
 <?php endif ?>

@@ -8,6 +8,10 @@
 <input id="startDate" name="start_date" type="hidden" value="<?php echo $startDate ?>"/>
 <input id="endDate" name="end_date" type="hidden" value="<?php echo $endDate ?>"/>
 
+<?php if ($message): ?>
+<p><?php echo $message ?> LOL!</p>
+<?php endif ?>
+
 <table id="TimelogList" class="table list">
 	<thead>
 	<tr class="headings">
