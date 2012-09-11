@@ -63,6 +63,24 @@ select { text-align: center; }
 	.timelogForm .times input { width: 142px; } /* double column input */
 	.timelogForm input.col2 { width: 148px; } /* save & cancel buttons */
 	.timelogForm .startStop { width: 100%; }
+	.timelogForm .border { border: 1px solid #CCCCCC; border-radius: 2px 2px 2px 2px; padding: 3px; }
+	/* Default button style */
+	.timelogForm .button { 
+		color: #808080; text-decoration: none; text-transform: capitalize;
+		padding: 3px; border-radius: 2px; border: 0 none; cursor: pointer; 
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd)); /* for webkit browsers */
+		background: -moz-linear-gradient(top,  #fff,  #ddd);
+		text-shadow: 1px 1px 0px #fff; 
+		box-shadow: 0px 1px 1px #666;
+	}
+	/* When button is being pressed */
+	.timelogForm .button:active {
+		color: #999;
+		text-shadow: 1px 1px 0px #f0f0f0; 
+		background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#d0d0d0)); /* for webkit browsers */
+		background: -moz-linear-gradient(top,  #fafafa,  #d0d0d0);
+		box-shadow: inset 0px 0px 3px #666;
+	}
 
 /* Header */
 #Header { 
@@ -93,11 +111,11 @@ select { text-align: center; }
 .button { 
 	padding: 6px 10px 2px 6px; background: #e0e0e0;  
 	color: #808080; text-decoration: none; 
-	border-radius: 7px;
-	box-shadow: 0px 1px 1px #666;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #f0f0f0,  #ccc);
 	text-transform: capitalize;
+	box-shadow: 0px 1px 1px #666;
+	border-radius: 7px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#ccc)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #f0f0f0,  #ccc);
 }
 .addButton { position: absolute; right: 10px; top: 10px; }
 	.addButton span { padding-left: 24px; background: url(../images/icons/add.png) no-repeat scroll 1px -1px; }
