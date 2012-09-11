@@ -47,14 +47,21 @@ body { background: #e0e0e0; }
 }
 
 /* Forms */
+input.text, textarea { padding: 2px; border: 0 none; }
 .inlineLabel { position: relative; clear: both; }
 	.inlineLabel input { width: 100%; text-align: right; }
-	.inlineLabel label { position: absolute; top: 3px; left: 6px; }
+	.inlineLabel label { position: absolute; top: 6px; left: 6px; }
 select { text-align: center; }
 
 ::-webkit-input-placeholder { color: #ccc; }
 :-moz-placeholder { color: #ccc; }
 :-ms-input-placeholder { color: #ccc; }
+
+/* Timelog form */
+.timelogForm { width: 300px; }
+	.timelogForm #DateInput, .timelogForm textarea { width: 294px; } /* single col input */
+	.timelogForm .times input { width: 142px; } /* double column input */
+	.timelogForm input.col2 { width: 148px; } /* save & cancel buttons */
 
 
 /* Header */
@@ -62,7 +69,6 @@ select { text-align: center; }
 	padding: 10px 20px 0; 
 	background: #333; color: #fff;
 	border-bottom: 3px solid #f5f5f5; /* Same color as current menu item background */
-/*	box-shadow: 0px 0px 5px #666;*/
 	position: relative; 
 	height: 50px;
 }
@@ -75,11 +81,10 @@ select { text-align: center; }
 		#MainNavigation li.current a { background: #f5f5f5; color: #666; }
 
 /* Layout */
-#Layout { padding: 0 10px; }
+#Layout { padding: 10px 10px 0; }
 	#Layout .table { width: 100%; }
-#LeftCol { display: block; background: #fff; padding: 3px 10px 10px; }
-#RightCol { width: 320px; }
-	.actionButtons input { float: left; }
+#LeftCol { background: #fff; padding: 3px 10px 10px; }
+#RightCol { width: 300px; padding-left: 10px; }
 
 /* Buttons */
 .button { 
@@ -95,11 +100,6 @@ select { text-align: center; }
 }
 .addButton { position: absolute; right: 10px; top: 10px; }
 	.addButton span { padding-left: 24px; background: url(../images/icons/add.png) no-repeat scroll 1px -1px; }
-/*
-.iconButton { height: 24px; }
-.iconClock { background: url(../images/icons/clock.png) no-repeat scroll 8px 2px; }
-.iconClockRed { background: url(../images/icons/clock_red.png) no-repeat scroll 8px 2px; }
-*/
 
 textarea { font: inherit; font-size: 0.9em; padding: 2px; }
 

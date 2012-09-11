@@ -10,15 +10,16 @@
 <p class="error"><?php echo $error ?></p>
 <?php endif ?>
 
-<form id="Timelog<?php echo $sidebar_form  ? 'Sidebar' : ($ajax ? 'Ajax' : '') ?>Form" method="post" action="<?php echo dirname($top_uri) ?>/timelogs/save" style="width: 300px">
+<form id="Timelog<?php echo $sidebar_form  ? 'Sidebar' : ($ajax ? 'Ajax' : '') ?>Form" class="timelogForm" method="post" action="<?php echo dirname($top_uri) ?>/timelogs/save">
 	
-	<div class="actionButtons">
+	<?php if ($sidebar_form): ?>
 		<?php if ($timelog->isNew()): ?>
 		<input class="iconButtons block" type="submit" name="submit" value="Start" />
 		<?php else: ?>
 		<input class="iconButton block" name="submit" type="Submit" value="Stop" class="clearfix"/>
 		<?php endif ?>
-	</div>
+	<?php endif ?>
+	
 	<?php if ($sidebar_form): ?>
 	<input type="hidden" name="sidebar_form" value="1"/>
 	<?php endif ?>
@@ -31,12 +32,12 @@
 		<input id="DateInput" class="dateInput" type="text" name="timelog[date]" maxlength="10" placeholder="2012-08-21" pattern="^20[0-9]{2}-(0[1-9]|1[0-2])-(([0-2][0-9])|30|31)$" value="<?php echo $timelog->getDate() ?>"/>			
 	</div>
 
-	<div class="inlineLabel margin">
-		<div style="width: 49%; position: relative; float: left;">
+	<div class="inlineLabel margin times clearfix">
+		<div style="position: relative; float: left;">
 			<label for="StartInput">Start:</label>
 			<input id="StartInput" type="text" name="timelog[start_time]" maxlength="5" placeholder="9:30" patterm="^([0-2]?[0-9]):([0-5][1-9])$" value="<?php echo $timelog->getStartTimeNice() ?>"/>
 		</div>
-		<div style="width: 49%; position: relative; float: right;">
+		<div class="" style="position: relative; float: right;">
 			<label for="EndInput">End:</label>
 			<input id="EndInput" type="text" name="timelog[end_time]" maxlength="5" placeholder="13:45" patterm="^([0-2]?[0-9]):([0-5][1-9])$" value="<?php echo $timelog->getEndTimeNice() ?>"/>
 		</div>
