@@ -1,5 +1,3 @@
-<h1>Projects</h1>
-
 <p><a href="<?php echo $top_uri ?>/add">Add new</a></p>
 
 <div class="table">

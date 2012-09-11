@@ -1,8 +1,3 @@
-<h1>
-	<?php
-		echo ($project->isNew()) ? 'New' : 'Edit'
-	?> Project
-</h1>
 
 <?php if (isset($error)): ?>
 <p class="error"><?php echo $error ?></p>

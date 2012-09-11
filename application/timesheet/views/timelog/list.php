@@ -1,15 +1,10 @@
-<h2>
-	Timelogs
-	for <?php echo $startDate ?> to <?php echo $endDate ?>
-</h2>
-
-<p><a href="<?php echo $top_uri ?>/add" class="button addButton"><span>Add new</span></a></p>
+<!-- <p><a href="<?php echo $top_uri ?>/add" class="button addButton"><span>Add new</span></a></p> -->
 
 <input id="startDate" name="start_date" type="hidden" value="<?php echo $startDate ?>"/>
 <input id="endDate" name="end_date" type="hidden" value="<?php echo $endDate ?>"/>
 
 <?php if ($message): ?>
-<p><?php echo $message ?> LOL!</p>
+<p><?php echo $message ?></p>
 <?php endif ?>
 
 <table id="TimelogList" class="table list">

@@ -14,6 +14,7 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 		$data = array(); // data for view 		
 		$data['startDate'] = $start_date = date('Y-01-01');
 		$data['endDate'] = $end_date = date('Y-m-d');
+		$data['heading'] = 'Timelogs for '.$data['startDate'].' to '.$data['endDate'];
 		if ($data['timelogs'] = $this->_timelog_factory->getDayTotalsByDateRange($start_date, $end_date)) {
 			$data['first_expaned_row_html'] = $this->day(array_shift($data['timelogs'])->getDate(), true);
 		}

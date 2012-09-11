@@ -62,36 +62,37 @@ select { text-align: center; }
 	.timelogForm #DateInput, .timelogForm textarea { width: 294px; } /* single col input */
 	.timelogForm .times input { width: 142px; } /* double column input */
 	.timelogForm input.col2 { width: 148px; } /* save & cancel buttons */
-
+	.timelogForm .startStop { width: 100%; }
 
 /* Header */
 #Header { 
-	padding: 10px 20px 0; 
-	background: #333; color: #fff;
-	border-bottom: 3px solid #f5f5f5; /* Same color as current menu item background */
+	padding: 1px 20px 0; 
+/*	background: #444 url(../images/fabric-light.jpg) repeat scroll top left; color: #fff;*/
+	background: #444;
+	border-bottom: 3px solid #fff; /* Same color as current menu item background */
 	position: relative; 
-	height: 50px;
+	height: 32px;
 }
-	#Header h1 { margin: 10px 0; }
+	#Header h1 { margin: 6px 0; font-size: 1.5em; color: #fff; text-shadow: 1px 1px 0 #000; }
 	
 	/* Main Navigation */
 	#MainNavigation { position: absolute; right: 20px; bottom: 0px; }
 	#MainNavigation li { float: left; margin-right: 2px; }
 		#MainNavigation li a { color: #333; text-decoration: none; padding: 7px 10px 4px; background: #ccc; display: block; }
-		#MainNavigation li.current a { background: #f5f5f5; color: #666; }
+		#MainNavigation li.current a { background: #fff; color: #666; }
 
 /* Layout */
-#Layout { padding: 10px 10px 0; }
+/*#Layout { padding: 10px; }*/
 	#Layout .table { width: 100%; }
-#LeftCol { background: #fff; padding: 3px 10px 10px; }
-#RightCol { width: 300px; padding-left: 10px; }
+#LeftCol { background: #fff; padding: 0px; box-shadow: 3px 3px 5px #999; }
+	#LeftCol #Heading { margin: 0 0 10px; padding: 9px 20px 3px; background: #f0f0f0; color: #666; text-shadow: 1px 1px 0px #fff; border-bottom: 1px solid #ddd; font-size: 1.4em; }
+	#LeftCol #Content { margin: 10px; }
+#RightCol { width: 300px; padding: 0 10px; }
 
 /* Buttons */
 .button { 
 	padding: 6px 10px 2px 6px; background: #e0e0e0;  
-/*	font-weight: bold;*/
 	color: #808080; text-decoration: none; 
-/*	text-shadow: -1px -1px 0px #666; */
 	border-radius: 7px;
 	box-shadow: 0px 1px 1px #666;
 	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */

@@ -1,11 +1,3 @@
-<?php if (!$ajax && !$sidebar_form): ?>
-<h2>
-	<?php
-		echo ($timelog->isNew()) ? 'New' : 'Edit'
-	?> Timelog
-</h2>
-<?php endif ?>
-
 <?php if (isset($error)): ?>
 <p class="error"><?php echo $error ?></p>
 <?php endif ?>
@@ -14,9 +6,9 @@
 	
 	<?php if ($sidebar_form): ?>
 		<?php if ($timelog->isNew()): ?>
-		<input class="iconButtons block" type="submit" name="submit" value="Start" />
+		<input class="startStop" type="submit" name="submit" value="Start" />
 		<?php else: ?>
-		<input class="iconButton block" name="submit" type="Submit" value="Stop" class="clearfix"/>
+		<input class="startStop" name="submit" type="Submit" value="Stop" class="clearfix"/>
 		<?php endif ?>
 	<?php endif ?>
 	

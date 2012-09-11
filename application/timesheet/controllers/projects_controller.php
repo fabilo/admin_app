@@ -13,6 +13,7 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 	
 	public function index() {
 		$data = array(
+			'heading' => 'Projects',
 			'projects' => $this->_user->getVisibleProjects($this->_project_factory)
 		);
 		$this->display('projects/list', $data);
@@ -22,6 +23,7 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 		
 		$data = array(
 			'project' => new Project(), 
+			'heading' => 'New Project',
 			'departments' => $this->_user->getVisibleDepartments($this->_department_factory),
 			'teams' => $this->_user->getVisibleTeams($this->_team_factory)
 		);
@@ -34,6 +36,7 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 		if (!$project) throw new Exception('Project doesn\'t exist');
 
 		$this->display('projects/form', array(
+				'heading' => 'Edit Project',
 				'project' => $project,
 				'departments' => $this->_user->getVisibleProjects($this->_project_factory), 
 				'teams' => $this->_user->getVisibleTeams($this->_team_factory)

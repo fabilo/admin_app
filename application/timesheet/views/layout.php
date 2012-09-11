@@ -4,7 +4,10 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Timesheet</title>
+	<title>
+		Timesheet
+		<?php if (isset($page_heading)): ?>- <?php echo $page_heading ?><?php endif ?>
+	</title>
 	<meta name="generator" content="TextMate http://macromates.com/">
 	<meta name="author" content="Fabian Snaith">
 	<base href="<?php echo $base_uri ?>"/>
@@ -30,7 +33,10 @@
 	<div class="table">
 		<div class="table-row">
 			<div id="LeftCol" class="table-cell relative">
+				<?php if (isset($heading)): ?><h2 id="Heading"><?php echo $heading ?></h2><?php endif ?>
+				<div id="Content">
 					<?php echo $body ?>
+				</div>
 			</div>
 			<div id="RightCol" class="table-cell relative">
 				<?php echo $current_timelog_form ?>
