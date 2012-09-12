@@ -10,13 +10,13 @@
 <table id="TimelogList" class="table list">
 	<thead>
 	<tr class="headings">
-		<td class="date">Date</td>
-		<td class="start-time time">Start</td>
-		<td class="end-time time">End</td>
-		<td class="hours">Hours</td>
-		<td class="project">Project</td>
-		<td class="category">Category</td>
-		<td class="notes">Notes</td>
+		<th class="date">Date</th>
+		<th class="start-time time">Start</th>
+		<th class="end-time time">End</th>
+		<th class="hours">Hours</th>
+		<th class="project">Project</th>
+		<th class="category">Category</th>
+		<th class="notes">Notes</th>
 	</tr>
 	</thead>
 	<tbody>

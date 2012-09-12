@@ -21,7 +21,7 @@ align-center { text-align: center; }
 body { background: #e0e0e0; }
 
 /* Table */
-.table { display: table; width: 800px; }
+.table { display: table; width: 800px;  }
 .table-row { display: table-row; }
 .table-cell { display: table-cell; padding: 3px 3px; font-size: 10pt; }
 
@@ -29,19 +29,19 @@ body { background: #e0e0e0; }
 body .list tbody tr:hover td { background: #ffc; }
 	.list tbody tr.clickable:hover td { cursor: pointer; }
 	.list tr:hover .hidden { visibility: visible;}
-.list { width: 100%; }
-.list td { border-top: 1px solid #e0e0e0; line-height: 18px; padding: 2px 0px 2px 6px; }
-.list tbody tr:nth-child(odd) td	{ background-color:#f0f0f0; }
-.list tbody tr:nth-child(even) td { background-color:#fff; }
+.list { width: 100%; border-collapse: separate; }
+.list td, .list th { border-bottom: 1px solid #e0e0e0; line-height: 18px; padding: 2px 6px; }
+.list tbody tr:nth-child(odd) td { background-color:#f0f0f0; border-top: 1px solid #fff; }
+.list tbody tr:nth-child(even) td { background-color:#fff; padding-top: 3px; }
 
 /* Timelog list specifics */
-.list thead tr td { border: 0 none; }
-	.list .date { width: 80px; }
-	.list .time { width: 50px; }
-	.list .hours { width: 24px; }
+.list thead tr th { text-align: left; font-weight: bold; }
+	.list .date { max-width: 80px; }
+	.list .time { max-width: 50px; }
+	.list .hours { max-width: 24px; }
 	.list .project, .list .category { min-width: 120px; }
 .list .day-total { font-weight: bold; color: #444; }
-.list .timelog td:first-child { background: none; border-right: 1px solid #ccc; border-top: 0px; }
+.list .timelog td:first-child { background: none; border: 0 none; border-right: 1px solid #ccc; }
 .list .timelog td { font-size: 9pt; }
 
 .timelog .notes .truncated { 
