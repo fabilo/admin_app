@@ -14,13 +14,12 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 	public function index() {
 		$data = array(
 			'heading' => 'Projects',
-			'projects' => $this->_user->getVisibleProjects($this->_project_factory)
+			'projects' => $this->_user->getVisibleProjects($this->_project_factory, 1)
 		);
 		$this->display('projects/list', $data);
 	}
 	
 	public function add() {
-		
 		$data = array(
 			'project' => new Project(), 
 			'heading' => 'New Project',

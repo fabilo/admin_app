@@ -25,6 +25,11 @@
 			<option value="<?php echo $team->getId() ?>" <?php echo ($team->getId() == $project->getTeamId()) ? 'SELECTED' : '' ?>><?php echo $team->getName() ?></option>
 			<?php endforeach ?>
 		</select>
+		
+		<div class="margin">
+			<input id="ArchivedCheckbox" type="checkbox" name="project[archived]" value="1" <?php echo ($project->archived) ? 'CHECKED' : '' ?>/>
+			<label for="ArchivedCheckbox">Archived?</label>
+		</div>
 	
 		<textarea name="project[description]" placeholder="Description" class="margin block"><?php echo $project->getDescription() ?></textarea>
 
