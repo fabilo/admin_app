@@ -42,7 +42,10 @@ body .list tbody tr:hover td { background: #ffc; }
 	.list .project, .list .category { min-width: 120px; }
 .list .day-total { font-weight: bold; color: #444; }
 .list .timelog td:first-child { background: none; border: 0 none; border-right: 1px solid #ccc; }
-.list .timelog td { font-size: 9pt; }
+.list .timelog td { font-size: 9pt; padding: 1px 6px; font-size: 8pt; line-height: 1.2em; vertical-align: middle }
+	.list tbody tr.timelog:nth-child(odd) td { border-top: 0px none; }
+	.list tbody tr.timelog:nth-child(even) td { padding-top: 2px; }
+	.list tbody .timelog .project, .list tbody .timelog .category, .list tbody .notes {  }
 
 .timelog .notes .truncated { 
 	display: block; 
