@@ -39,6 +39,8 @@
 
 // set_include_path(get_include_path().'/Users/fabilo/shared_package/');	
 
+// helper 
+require_once('helpers/View_Helper.php');
 // include interfaces
 require_once('interfaces/Project_Factory_Interface.php');
 require_once('interfaces/Timelog_Category_Factory_Interface.php');
@@ -46,6 +48,7 @@ require_once('interfaces/User_Interface.php');
 // include libraries
 require_once('libraries/base/Exceptions.php');
 require_once('libraries/base/AbstractEntity.php');
+require_once('libraries/Timesheet.php');
 // require_once('libraries/base/Base_Auth_Controller.php'); // not included in time, must be included in individual controller files
 require_once('libraries/base/Base_Domain_Model.php');
 require_once('libraries/base/Base_PDO_Factory.php');

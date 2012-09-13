@@ -2,9 +2,13 @@
 require_once('libraries/Current_Timelog_Form_Controller.php');
 
 class Timelogs_Controller extends Current_Timelog_Form_Controller {
+	protected $_timesheet; 
 	
 	public function __construct() {
 		parent::__construct();
+		
+		$this->_timesheet = new Timesheet($this->_timelog_factory);
+		$this->_timesheet->_view_globals = $this->_view_globals;
 	}
 	
 	/**
@@ -210,5 +214,22 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 		catch (Exception $e) {
 			show_404();
 		}
+	}
+	
+	/**
+	 * Display timelogs for a week
+	 */
+	public function week($week=null,$year=null) {		
+		if (!$week) $week = Date('W');
+		if (!$year) $year = Date('Y');
+		$html = $this->_timesheet->getHtmlForWeek($week, $year);
+		die($html);
+	}
+	
+	public function test() {
+		$html = $this->_timesheet->getHtmlForWeek(Date('W'));
+		// $html = $this->_timesheet->getHtmlForDate('2012-09-11', true);
+		
+		die('<table>'.$html.'</table>');
 	}
 }
