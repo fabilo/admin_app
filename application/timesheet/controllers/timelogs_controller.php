@@ -6,44 +6,34 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-		
-		$this->_timesheet = new Timesheet($this->_timelog_factory);
-		$this->_timesheet->_view_globals = $this->_view_globals;
 	}
 	
 	/**
 	 * Display list of timelogs
 	 */
 	public function index() {
-		$data = array(); // data for view 		
-		$data['startDate'] = $start_date = date('Y-01-01');
-		$data['endDate'] = $end_date = date('Y-m-d');
-		$data['heading'] = 'Timelogs for '.$data['startDate'].' to '.$data['endDate'];
-		if ($data['timelogs'] = $this->_timelog_factory->getDayTotalsByDateRange($start_date, $end_date)) {
-			$data['first_expaned_row_html'] = $this->day(array_shift($data['timelogs'])->getDate(), true);
-		}
-		// flash data not working at the moment.
-		$data['message'] = $this->session->flashdata('message');
-		$this->display('timelog/list', $data);
+		$this->week();
 	}
 	
 	/** 
 	 *	Display a form for a new timelog
 	 */
 	public function add() {
-		$this->displayTimelogForm(new Timelog());
+		$this->_body = $this->_timesheet->getTimelogFormHtml(new Timelog());
+		$this->display2();
 	}
 	
-	/** display a form to edit a timelog
-	 * 
-	 *	@var $id (int) - id for the timelog to edit
+	/** 
+	 *	display a form to edit a timelog
+	 *	@param int $id - id for the timelog to edit
 	 */
 	public function edit($id) {
 		try {
 			// get timelog to edit
 			$timelog = $this->_timelog_factory->getById($id);
-
-			$this->displayTimelogForm($timelog);
+			$this->_heading = 'Edit timelog';
+			$this->_body = $this->_timesheet->getTimelogFormHtml($timelog);
+			$this->display2();
 		}
 		catch (Exception $e) {
 			$this->session->set_flashdata('message', 'Couldn\'t find timelog with id: '.$id);
@@ -112,13 +102,14 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 				}
 				
 				// check how form was submitted and if we need to reload the form
+				
 				switch ($this->input->post('submit')) {
 					case 'Cancel': 
 						// user pushed the cancel button
 						// form will be displayed with new timelog set at start of function
 					case 'Start': 
 					case 'Stop': 
-						$this->displayTimelogForm($timelog, $sidebar_form = $this->input->post('sidebar_form'));
+						die($this->_timesheet->getTimelogFormHtml($timelog, array('sidebar_form'=>true)));
 						break;
 						
 					default: 
@@ -139,14 +130,16 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 			}
 		}
 		catch (Exception $e) {
+			$this->flash_message('Failed saving timelog: '.$e->getMessage());
+
 			// reassign timelog for form if it's invalid
-			if(get_class($timelog) != 'Timelog')	$timelog = new Timelog();
+			if(isset($timelog) && (get_class($timelog) == 'Timelog')) {
+				redirect('/timelogs/edit/'.$timelog->getId(), 'refresh');
+			}
+			else {
+				redirect('/timelogs/add', 'refresh');
+			}
 			
-			// save failed - redisplay form
-			$this->display('timelog/form', array(
-					'timelog' => $timelog,
-					'error' => 'Error saving timelog: '.$e->getMessage()
-			));
 		}
 	}
 	
@@ -174,17 +167,9 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	 *	Get all timelogs for day and output 
 	 *	Should be called via ajax
 	 */
-	public function day($date, $return_html=false) {
-		$data = array(
-				'timelogs' => $this->_timelog_factory->getForDate($date),
-				'totals' => array_pop($this->_timelog_factory->getDayTotalsByDateRange($date, $date))
-		);
-		
-		// return html
-		if ($return_html) return $this->display('timelog/partial/day', $data, array('return_html'=>true));
-
-		// otherwise display
-		$this->display('timelog/partial/day', $data);
+	public function day($date) {
+		$html = $this->_timesheet->getTotalHoursTableRowHtmlForDate($date, true);
+		die($html);
 	}
 	
 	/**
@@ -202,34 +187,67 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	 */
 	public function changeSidebarFormTimelog($timelog_id) {
 		try {
-			// get timelog 
-			if (!$timelog = $this->_timelog_factory->getById($timelog_id)) 
-				throw new Exception('Timelog not found for id: '.$timelog_id);
+			if ($timelog_id == 'start-new') {
+				// create new timelog and default times to now
+				$timelog = new Timelog(array(
+					'date' => date('Y-m-d'),
+					'start_time' => date('H:i'),
+					'user_id' => $this->_user->getId()
+				));
+				// insert new timelog into db
+				$timelog->validate();
+				$id = $this->_timelog_factory->insert($timelog);
+				$timelog->setId($id);
+			}
+			else {
+				// get timelog 
+				if (!$timelog = $this->_timelog_factory->getById($timelog_id)) 
+					throw new Exception('Timelog not found for id: '.$timelog_id);
+			}
 
 			// update timelog in session
 			$_SESSION['current_timelog'] = $timelog;
+			
 			// display timelog form html
-			$this->display('blank', array('body'=>$this->displayTimelogForm($timelog, $sidebar_form=true, $return_html=true)));
+			die($this->_timesheet->getTimelogFormHtml($timelog, array('sidebar_form'=>true)));
 		} 
 		catch (Exception $e) {
-			show_404();
+			die($e->getMessage());
 		}
 	}
 	
 	/**
 	 * Display timelogs for a week
 	 */
-	public function week($week=null,$year=null) {		
-		if (!$week) $week = Date('W');
+	public function week($year=null, $week=null) {		
+		// flag to display timelog table rows for first row
+		$expand_first_rows_timelogs = false;
+		// year not set - default to this year
 		if (!$year) $year = Date('Y');
-		$html = $this->_timesheet->getHtmlForWeek($week, $year);
-		die($html);
-	}
-	
-	public function test() {
-		$html = $this->_timesheet->getHtmlForWeek(Date('W'));
-		// $html = $this->_timesheet->getHtmlForDate('2012-09-11', true);
+		// week not set - default to this week
+		if (!$week) $week = Date('W');
+
+		// expand first row's timelogs if this week
+		if ($week == Date('W')) $expand_first_rows_timelogs = true;
 		
-		die('<table>'.$html.'</table>');
+		// setup prev nav button html
+		$prev_year = ($week <= 1) ? $year-1 : $year;
+		$prev_week = ($week <= 1) ? 52 : $week-1;
+		$prev_button = '<a href="'.site_url('/timelogs/week/'.$prev_year.'/'.$prev_week).'"><img src="images/icons/resultset_previous.png" title="View Previous Week"/></a>';
+		
+		// setup next nav button html
+		$next_year = ($week >= 52) ? $year+1 : $year;
+		$next_week = ($week >= 52) ? 1 : $week+1;
+		$next_button = '<a href="'.site_url('/timelogs/week/'.$next_year.'/'.$next_week).'"><img src="images/icons/resultset_next.png" title="View Next Week"/></a>';
+		
+		// setup start new button html
+		$start_new_button = '<a class="showInSidebar button" href="'.site_url('/timelogs/changeSidebarFormTimelog/start-new').'"><img src="images/icons/add.png" title="Start New Timelog Now"/> Start New</a>';
+		
+		// defining heading bar
+		$this->_heading = $prev_button.' '.$year.' timelogs for week '.$week.' '.$next_button.' '.$start_new_button;
+		
+		$this->_body = $this->_timesheet->getTotalHoursTableRowHtmlForWeek($week, $year, $expand_first_rows_timelogs);
+		$this->_javascript_includes[]= 'timelog_list';
+		$this->display2();
 	}
 }

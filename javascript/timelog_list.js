@@ -29,6 +29,7 @@ function refreshTimelog(date) {
 function timelogListClick() {
 	if ($(this).hasClass('collapsed')) {
 		refreshTimelog(this.id);
+		$(this).removeClass('collapsed').addClass('expanded');
 	}
 	else {
 		// remove timelogs after this daily total 
@@ -91,7 +92,7 @@ $(document).ready(function() {
 	// expand notes click
 	$('.timelog .notes .truncated').click(timelogNotesClick);
 	// display timelog in sidebar
-	$('.timelog .showInSidebar').click(showTimelogInSidebar);
+	$('.showInSidebar').click(showTimelogInSidebar);
 	// edit timelog modal 
 	// $('.editTimelog').click(editTimelog);
 });

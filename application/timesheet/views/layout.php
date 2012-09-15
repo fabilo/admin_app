@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>
 		Timesheet
-		<?php if (isset($page_heading)): ?>- <?php echo $page_heading ?><?php endif ?>
+		<?php if (isset($meta_title)): ?>- <?php echo $meta_title ?><?php endif ?>
 	</title>
 	<meta name="generator" content="TextMate http://macromates.com/">
 	<meta name="author" content="Fabian Snaith">
@@ -19,6 +19,10 @@
 	<link rel="stylesheet" type="text/css" href="javascript/jquery-ui-1.8.23.custom/css/smoothness/jquery-ui-1.8.23.custom.css"/>
 	<script type="text/javascript" src="javascript/jquery-ui-1.8.23.custom/js/jquery-1.7.2.min.js"></script>
 	<script src="javascript/jquery-ui-1.8.23.custom/js/jquery-ui-1.8.23.custom.min.js"></script>
+	
+	<?php foreach ($javascript_includes as $js_filename): ?>
+		<script src="javascript/<?php echo $js_filename ?>.js"></script>
+	<?php endforeach ?>
 </head>
 <body>
 <div id="Header">

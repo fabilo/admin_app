@@ -1,9 +1,5 @@
-$(document).ready(function(){ 
-	// setup datepicker 
-	$(".dateInput").datepicker({
-		dateFormat: 'yy-mm-dd',
-	});
-	
+
+function initSidebarForm() {
 	// setup submit buttons to update a hidden input since submit buttons aren't included in jQuery serialize
 	$('#TimelogSidebarForm').prepend('<input id="SubmitHiddenInput" type="hidden" name="submit" value="" />');
 	$('#TimelogSidebarForm input[type=submit]').each(function(){
@@ -18,13 +14,13 @@ $(document).ready(function(){
 		// handle form submission
 		// prevent the form posting the form
 		e.preventDefault();
-	
+
 		// display loading icon
 		$(this).append('<p class="saving align-center">Saving.<blink>.</blink></p>');
-	
+
 		// capture post string before we disable the inputs
 		var postString = $(this).serialize();
-	
+
 		// ajax submit form
 		$.ajax({
 			type:'POST', 
@@ -38,8 +34,10 @@ $(document).ready(function(){
 				else {
 					// update form in sidebar
 					$('#RightCol').html(data);
+					// reimplement form submit events
+					initSidebarForm();
 				}
-				
+
 				// check if the timelog list is available
 				if ($('#TimelogList').length) {
 					// now reload item in list
@@ -59,5 +57,12 @@ $(document).ready(function(){
 			// form is valid, submit
 			$('#TimelogSidebarForm').submit();
 		}
+	});
+}
+
+$(document).ready(function(){ 
+	// setup datepicker 
+	$(".dateInput").datepicker({
+		dateFormat: 'yy-mm-dd',
 	});
 });
