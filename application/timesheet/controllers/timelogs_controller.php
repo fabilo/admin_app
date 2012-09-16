@@ -233,15 +233,15 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 		// setup prev nav button html
 		$prev_year = ($week <= 1) ? $year-1 : $year;
 		$prev_week = ($week <= 1) ? 52 : $week-1;
-		$prev_button = '<a href="'.site_url('/timelogs/week/'.$prev_year.'/'.$prev_week).'"><img src="images/icons/resultset_previous.png" title="View Previous Week"/></a>';
+		$prev_button = '<a href="'.site_url('/timelogs/week/'.$prev_year.'/'.$prev_week).'"><img class="bw-toggle prev-next" src="images/icons/resultset_previous-bw.png" title="View Previous Week"/></a>';
 		
 		// setup next nav button html
 		$next_year = ($week >= 52) ? $year+1 : $year;
 		$next_week = ($week >= 52) ? 1 : $week+1;
-		$next_button = '<a href="'.site_url('/timelogs/week/'.$next_year.'/'.$next_week).'"><img src="images/icons/resultset_next.png" title="View Next Week"/></a>';
+		$next_button = '<a href="'.site_url('/timelogs/week/'.$next_year.'/'.$next_week).'"><img class="bw-toggle prev-next"  src="images/icons/resultset_next-bw.png" title="View Next Week"/></a>';
 		
 		// setup start new button html
-		$start_new_button = '<a class="showInSidebar button" href="'.site_url('/timelogs/changeSidebarFormTimelog/start-new').'"><img src="images/icons/add.png" title="Start New Timelog Now"/> Start New</a>';
+		$start_new_button = '<a id="StartNewButton" class="showInSidebar button" href="'.site_url('/timelogs/changeSidebarFormTimelog/start-new').'"><img src="images/icons/add.png" title="Start New Timelog Now"/> Start New</a>';
 		
 		// defining heading bar
 		$this->_heading = $prev_button.' '.$year.' timelogs for week '.$week.' '.$next_button.' '.$start_new_button;

@@ -12,8 +12,11 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 	}
 	
 	public function index() {
+		$heading = 'Projects';
+		// add 'Add New' button
+		$heading .= ' <a class="button" href="projects/add"><img src="images/icons/add.png" title="Add New Project"/> Add new</a>';
 		$data = array(
-			'heading' => 'Projects',
+			'heading' => $heading,
 			'projects' => $this->_user->getVisibleProjects($this->_project_factory, 1)
 		);
 		$this->display('projects/list', $data);

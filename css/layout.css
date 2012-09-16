@@ -117,6 +117,9 @@ select { text-align: center; }
 		/** add link to go in header **/
 		.addLink { position: absolute; right: 0px; top: -32px; }
 		.addLink:before {	padding-right: 5px; content: url(../images/icons/add.png); vertical-align: top; position: relative; top: -3px; }
+		/** prev next links **/
+		#LeftCol #Heading .prev-next { opacity: 0.6; }
+			#LeftCol #Heading .prev-next:hover { opacity: 1; }
 #RightCol { width: 300px; padding: 0 10px; }
 
 /* Buttons */

@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="javascript/jquery-ui-1.8.23.custom/js/jquery-1.7.2.min.js"></script>
 	<script src="javascript/jquery-ui-1.8.23.custom/js/jquery-ui-1.8.23.custom.min.js"></script>
 	
-	<?php foreach ($javascript_includes as $js_filename): ?>
+	<?php if (isset($javascript_includes)) foreach ($javascript_includes as $js_filename): ?>
 		<script src="javascript/<?php echo $js_filename ?>.js"></script>
 	<?php endforeach ?>
 </head>
