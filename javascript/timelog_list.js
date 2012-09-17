@@ -23,6 +23,19 @@ function refreshTimelog(date) {
 		$('.timelog-'+date+' .truncated').click(timelogNotesClick);
 		// apply show timelog in sidebar click event
 		$('.timelog-'+date+' .showInSidebar').click(showTimelogInSidebar);
+		
+		// now update week table row for date (if applicable)
+		rel = $('#'+date).attr('rel');
+		// check if that week row exists 
+		if ($('#'+rel).length) {
+			// now update the hours column of the week row
+			$.ajax({
+			  url: 'timesheet.php/timelogs/weekHours/'+rel.substring(4),
+			}).success(function(data){
+				// update hours column
+				$('#'+rel+' .hours').html(data);
+			});
+		}
 	});
 }
 
@@ -83,7 +96,12 @@ function showTimelogInSidebar(e) {
 	  url: $(this).attr('href'),
 	}).success(function(data){
 		$('#RightCol').html(data);
+		initSidebarForm();
 	});
+}
+
+function refreshWeek(year, week) {
+	console.log('yip');
 }
 
 $(document).ready(function() {

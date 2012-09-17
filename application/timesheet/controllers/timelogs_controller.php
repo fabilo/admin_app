@@ -250,4 +250,15 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 		$this->_javascript_includes[]= 'timelog_list';
 		$this->display2();
 	}
+	
+	/**
+	 * get hours for a week 
+	 *	@param string $yearWeek - the year and week separated by a dash -
+	 *	@return float total of hours for the week
+	 */
+	public function weekHours($yearWeek) {
+		list($year, $week) = explode('-', $yearWeek);		
+		$hours = $this->_timelog_factory->getTotalHoursForWeek($year, $week);
+			die($hours);
+	}
 }

@@ -65,4 +65,6 @@ $(document).ready(function(){
 	$(".dateInput").datepicker({
 		dateFormat: 'yy-mm-dd',
 	});
+	// init sidebar form 
+	initSidebarForm();
 });
