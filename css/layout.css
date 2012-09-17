@@ -40,6 +40,7 @@ body .list tbody tr:hover td { background: #ffc; }
 	.list .time { width: 40px; }
 	.list .hours { width: 40px; }
 	.list .project, .list .category { min-width: 120px; }
+	.list .archived { font-style: italic; color: #999; }
 .list .day-total { font-weight: bold; color: #444; }
 .list .timelog td:first-child { background: none; border: 0 none; border-right: 1px solid #ccc; }
 .list .timelog td { font-size: 9pt; padding: 1px 6px; font-size: 8pt; line-height: 1.2em; vertical-align: middle }

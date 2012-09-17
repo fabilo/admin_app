@@ -11,7 +11,7 @@
 	</thead>
 	<tbody>
 	<?php foreach ($projects AS $project): ?>
-		<tr id="project-<?php echo $project->getId() ?>" class="clickable">
+		<tr id="project-<?php echo $project->getId() ?>" class="clickable <?php echo ($project->getArchived()) ? 'archived' : '' ?>">
 			<td><?php echo $project->getName() ?></td>
 			<td><?php echo $project->getDepartmentName() ?></td>
 			<td><?php echo $project->getTeamName() ?></td>
