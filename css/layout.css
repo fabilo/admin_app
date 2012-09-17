@@ -36,9 +36,9 @@ body .list tbody tr:hover td { background: #ffc; }
 
 /* Timelog list specifics */
 .list thead tr th { text-align: left; font-weight: bold; }
-	.list .date { width: 60px; }
-	.list .time { max-width: 50px; }
-	.list .hours { max-width: 24px; }
+	.list .date { width: 54px; }
+	.list .time { width: 40px; }
+	.list .hours { width: 40px; }
 	.list .project, .list .category { min-width: 120px; }
 .list .day-total { font-weight: bold; color: #444; }
 .list .timelog td:first-child { background: none; border: 0 none; border-right: 1px solid #ccc; }
@@ -110,8 +110,8 @@ select { text-align: center; }
 /*#Layout { padding: 10px; }*/
 	#Layout .table { width: 100%; }
 #LeftCol { background: #fff; padding: 0px; box-shadow: 3px 3px 5px #999; }
-	#LeftCol #Heading { margin: 0 0 10px; padding: 9px 20px 3px; background: #f0f0f0; color: #666; text-shadow: 1px 1px 0px #fff; border-bottom: 1px solid #ddd; font-size: 1.4em; position: relative; }
-		#LeftCol #Heading .button { position: absolute; right: 0; top: 0; font-size: 11pt; padding: 0 9px 0 5px; height: 31px; line-height: 31px; border-radius: 0; }
+	#LeftCol #Heading { margin: 0 0 10px; height: 20px; padding: 7px 20px 3px; background: #f0f0f0; color: #666; text-shadow: 1px 1px 0px #fff; border-bottom: 1px solid #ddd; font-size: 1.4em; position: relative; }
+		#LeftCol #Heading .button { position: absolute; right: 0; top: 0; font-size: 11pt; padding: 0 9px 0 5px; height: 31px; line-height: 31px; border-radius: 0; box-shadow: -1px 0 0 #ccc; border-left: 1px solid #fff; }
 			#LeftCol #Heading .button img { vertical-align: middle; }
 	#LeftCol #Content { margin: 10px; position: relative; }
 		/** add link to go in header **/
