@@ -98,6 +98,9 @@ function showTimelogInSidebar(e) {
 		$('#RightCol').html(data);
 		initSidebarForm();
 	});
+	
+	// if "Start New" button pressed, refresh today's timelog row in table
+	if ($(this).attr('id') == 'StartNewButton') refreshTimelog($('#TimelogSidebarForm #DateInput').val());
 }
 
 function refreshWeek(year, week) {
@@ -113,4 +116,18 @@ $(document).ready(function() {
 	$('.showInSidebar').click(showTimelogInSidebar);
 	// edit timelog modal 
 	// $('.editTimelog').click(editTimelog);
+	// bw icon rollover toggle 
+	$('img.bw-toggle').hover(function(){
+		// on hover in - remove -bw from image src
+		colouredIconSrc = $(this).attr('src').replace("-bw", "");
+		$(this).attr('src', colouredIconSrc);
+	}, 
+	function(){
+		// on hover out - add -bw back into image src
+		src = $(this).attr('src');
+		bwIconSrc = src.substring(0, (src.length-4))
+			+ '-bw'
+			+ src.substring((src.length-4));
+		$(this).attr('src', bwIconSrc);
+	});
 });

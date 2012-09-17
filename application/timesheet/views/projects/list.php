@@ -1,5 +1,3 @@
-<p><a class="addLink" href="<?php echo $top_uri ?>/add">Add new</a></p>
-
 <table class="list">
 	<thead>
 		<tr class="headings">
