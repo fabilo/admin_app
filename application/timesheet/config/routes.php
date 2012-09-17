@@ -40,6 +40,7 @@
 
 $route['timelogs(.*)'] = 'timelogs_controller$1';
 $route['projects(.*)'] = 'projects_controller$1';
+$route['reports(.*)'] = 'reports_controller$1';
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';

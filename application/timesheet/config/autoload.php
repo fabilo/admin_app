@@ -47,11 +47,12 @@ require_once('interfaces/Timelog_Category_Factory_Interface.php');
 require_once('interfaces/User_Interface.php');
 // include libraries
 require_once('libraries/base/Exceptions.php');
+require_once('libraries/base/Base_Render_Library.php');
 require_once('libraries/base/AbstractEntity.php');
-require_once('libraries/Timesheet.php');
 // require_once('libraries/base/Base_Auth_Controller.php'); // not included in time, must be included in individual controller files
 require_once('libraries/base/Base_Domain_Model.php');
 require_once('libraries/base/Base_PDO_Factory.php');
+require_once('libraries/Timesheet.php');
 // include domain model classes
 require_once('domain_models/Team.php');
 require_once('domain_models/Department.php');
