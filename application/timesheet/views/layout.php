@@ -28,9 +28,10 @@
 <div id="Header">
 	<h1>Timesheet</h1>
 	<ul id="MainNavigation" class="clearfix">
-		<li<?php echo (basename($top_uri) == 'timelogs') ? ' class="current"' : '' ?>><a href="<?php echo dirname($top_uri) ?>/timelogs/">Timelogs</a></li>
-		<li<?php echo (basename($top_uri) == 'projects') ? ' class="current"' : '' ?>><a href="<?php echo dirname($top_uri) ?>/projects/">Projects</a></li>
-		<li<?php echo (basename($top_uri) == 'categories') ? ' class="current"' : '' ?>><a href="<?php echo dirname($top_uri) ?>/categories/">Categories</a></li>
+		<li<?php echo (basename($top_uri) == 'timelogs') ? ' class="current"' : '' ?>><a href="<?php echo site_url('timelogs') ?>">Timelogs</a></li>
+		<li<?php echo (basename($top_uri) == 'projects') ? ' class="current"' : '' ?>><a href="<?php echo site_url('projects') ?>">Projects</a></li>
+		<li<?php echo (basename($top_uri) == 'categories') ? ' class="current"' : '' ?>><a href="<?php echo site_url('categories') ?>">Categories</a></li>
+		<li<?php echo (basename($top_uri) == 'reports') ? ' class="current"' : '' ?>><a href="<?php echo site_url('reports') ?>">Reports</a></li>
 	</ul>
 </div>
 <div id="Layout">
