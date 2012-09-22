@@ -4,6 +4,7 @@
 			<td>Project Name</td>
 			<td>Department</td>
 			<td>Team</td>
+			<td>Clairty Ref</td>
 			<td>Archived</td>
 			<td>Description</td>
 			<td class="edit"></td>
@@ -15,6 +16,7 @@
 			<td><?php echo $project->getName() ?></td>
 			<td><?php echo $project->getDepartmentName() ?></td>
 			<td><?php echo $project->getTeamName() ?></td>
+			<td><?php echo $project->getClarityReference() ?></td>
 			<td><?php echo ($project->getArchived()) ? 'Archived' : '' ?></td>
 			<td><?php echo $project->getDescription() ?></td>
 			<td class="edit">
