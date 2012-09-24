@@ -35,7 +35,7 @@ body .list tbody tr:hover td { background: #ffc; }
 .list tbody tr:nth-child(even) td { background-color:#fff; padding-top: 3px; }
 
 /* Timelog list specifics */
-.list thead tr th { text-align: left; font-weight: bold; }
+.list thead tr th { text-align: left; font-weight: bold; vertical-align: bottom; }
 	.list .date { width: 54px; }
 	.list .time { width: 40px; }
 	.list .hours { width: 40px; }

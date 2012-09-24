@@ -246,7 +246,7 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 		// defining heading bar
 		$this->_heading = $prev_button.' '.$year.' timelogs for week '.$week.' '.$next_button.' '.$start_new_button;
 		
-		$this->_body = $this->_timesheet->getTotalHoursTableRowHtmlForWeek($week, $year, $expand_first_rows_timelogs);
+		$this->_body = $this->_timesheet->getTimelogsTableHtmlForWeek($week, $year, $expand_first_rows_timelogs);
 		$this->_javascript_includes[]= 'timelog_list';
 		$this->display2();
 	}
