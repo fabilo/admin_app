@@ -58,6 +58,8 @@ body .list tbody tr:hover td { background: #ffc; }
 input.text, textarea { padding: 2px; border: 1px solid #ccc; }
 .inlineLabel { position: relative; clear: both; }
 	.inlineLabel input { width: 100%; text-align: right; }
+	/** place holder text won't align to right in chrome - hide for now **/
+	.inlineLabel input::-webkit-input-placeholder { color: #fff; }
 	.inlineLabel label { position: absolute; top: 6px; left: 6px; }
 select { text-align: center; }
 
