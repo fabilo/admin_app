@@ -37,36 +37,6 @@
 |
 */
 
-// set_include_path(get_include_path().'/Users/fabilo/shared_package/');	
-
-// helper 
-require_once('helpers/View_Helper.php');
-// include interfaces
-require_once('interfaces/Project_Factory_Interface.php');
-require_once('interfaces/Timelog_Category_Factory_Interface.php');
-require_once('interfaces/User_Interface.php');
-// include libraries
-require_once('libraries/base/Exceptions.php');
-require_once('libraries/base/Base_Render_Library.php');
-require_once('libraries/base/AbstractEntity.php');
-// require_once('libraries/base/Base_Auth_Controller.php'); // not included in time, must be included in individual controller files
-require_once('libraries/base/Base_Domain_Model.php');
-require_once('libraries/base/Base_PDO_Factory.php');
-require_once('libraries/Timesheet.php');
-// include domain model classes
-require_once('domain_models/Team.php');
-require_once('domain_models/Department.php');
-require_once('domain_models/Project.php');
-require_once('domain_models/Timelog.php');
-require_once('domain_models/Timelog_Category.php');
-require_once('domain_models/User.php');
-// include factory classes
-require_once('factories/Department_Factory.php');
-require_once('factories/Project_Factory.php');
-require_once('factories/Team_Factory.php');
-require_once('factories/Timelog_Factory.php');
-require_once('factories/Timelog_Categories_Factory.php');
-
 $autoload['packages'] = array('/Users/fabilo/shared_package');
 
 /*
@@ -81,8 +51,7 @@ $autoload['packages'] = array('/Users/fabilo/shared_package');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('session');
-
+$autoload['libraries'] = array('session','autoload_register');
 
 /*
 | -------------------------------------------------------------------

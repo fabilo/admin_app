@@ -1,6 +1,4 @@
 <?php
-require_once('libraries/Current_Timelog_Form_Controller.php');
-
 class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	protected $_timesheet; 
 	

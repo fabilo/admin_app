@@ -26,7 +26,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'timesheet.php';
+$config['index_page'] = 'timesheet_bootstrap.php';
 
 /*
 |--------------------------------------------------------------------------
