@@ -1,7 +1,7 @@
 function refreshTimelog(date) {
 	// ajax and get the day & timelogs html 
 	$.ajax({
-	  url: 'timesheet.php/timelogs/day/'+date,
+	  url: 'index.php/timelogs/day/'+date,
 	}).success(function(data){
 		// check if this timelog's day already exists? 
 		if ($('#'+date).length) {
@@ -30,7 +30,7 @@ function refreshTimelog(date) {
 		if ($('#'+rel).length) {
 			// now update the hours column of the week row
 			$.ajax({
-			  url: 'timesheet.php/timelogs/weekHours/'+rel.substring(4),
+			  url: 'index.php/timelogs/weekHours/'+rel.substring(4),
 			}).success(function(data){
 				// update hours column
 				$('#'+rel+' .hours').html(data);
@@ -54,7 +54,7 @@ function timelogListClick() {
 function timelogNotesClick() {
 	var id = $(this).attr('id').substring(6);
 	$.ajax({
-	  url: 'timesheet.php/timelogs/getNotes/'+id,
+	  url: 'index.php/timelogs/getNotes/'+id,
 	}).success(function(data){
 		// output notes to browser
 		modal(data, 'Notes');

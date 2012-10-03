@@ -42,8 +42,7 @@ class Reports_Controller extends Current_Timelog_Form_Controller {
 		$nextLink = ' <a href="'.site_url('reports/clarity/'.$nextYear.'/'.$nextWeek).'"><img class="bw-toggle prev-next" src="images/icons/resultset_next-bw.png" alt=">" title="Next Week"/></a> ';
 		
 		$this->_heading = $prevLink.$year.' clarity Report for week '.$week.$nextLink;
-		$html = $this->_timelog_report->getClarityReportForWeekHtml($week, $year);
-		$this->_body = $html;
+		$this->_body = $this->_timelog_report->getClarityReportForWeekHtml($week, $year);
 		$this->display2();
 	}
 }

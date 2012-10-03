@@ -41,8 +41,9 @@
 $route['timelogs(.*)'] = 'timelogs_controller$1';
 $route['projects(.*)'] = 'projects_controller$1';
 $route['reports(.*)'] = 'reports_controller$1';
+$route['categories(.*)'] = 'categories_controller$1';
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "timelogs_controller";
 $route['404_override'] = '';
 
 

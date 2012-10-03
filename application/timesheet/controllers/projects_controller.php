@@ -1,6 +1,4 @@
 <?php
-require_once('libraries/Current_Timelog_Form_Controller.php');
-
 class Projects_Controller extends Current_Timelog_Form_Controller {
 	
 	public function __construct() {
@@ -12,37 +10,26 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 	}
 	
 	public function index() {
-		$heading = 'Projects';
+		$this->_heading = 'Projects';
 		// add 'Add New' button
-		$heading .= ' <a class="button" href="projects/add"><img src="images/icons/add.png" title="Add New Project"/> Add new</a>';
-		$data = array(
-			'heading' => $heading,
-			'projects' => $this->_user->getVisibleProjects($this->_project_factory, 1)
-		);
-		$this->display('projects/list', $data);
+		$this->_heading .= ' <a class="button" href="'.site_url('projects/add').'"><img src="images/icons/add.png" title="Add New Project"/> Add new</a>';
+		$this->_body = $this->_timesheet->getProjectTableHtml();
+		$this->display2();
 	}
 	
 	public function add() {
-		$data = array(
-			'project' => new Project(), 
-			'heading' => 'New Project',
-			'departments' => $this->_user->getVisibleDepartments($this->_department_factory),
-			'teams' => $this->_user->getVisibleTeams($this->_team_factory)
-		);
-		$this->display('projects/form', $data);
+		$this->_heading = 'New Project';
+		$this->_body = $this->_timesheet->getProjectFormHtml();
+		$this->display2();
 	}
 	
 	public function edit($id) {
+		$this->_heading = 'Edit Project';
 		// get project to edit
 		$project = $this->_project_factory->getById($id);
 		if (!$project) throw new Exception('Project doesn\'t exist');
-
-		$this->display('projects/form', array(
-				'heading' => 'Edit Project',
-				'project' => $project,
-				'departments' => $this->_user->getVisibleProjects($this->_project_factory), 
-				'teams' => $this->_user->getVisibleTeams($this->_team_factory)
-		));
+		$this->_body = $this->_timesheet->getProjectFormHtml($project);
+		$this->display2();
 	}
 	
 	public function save() {
@@ -52,7 +39,6 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 			$obj->validate();			
 			
 			if ($obj->getId()) {
-				
 				$this->_project_factory->update($obj);
 			}
 			else {

@@ -3,3 +3,4 @@ application/logs/*.php
 user_guide/*
 application/cache/*
 /*.php
+application/timesheet/config/config.php
