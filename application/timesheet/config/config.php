@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://fabilo.local/admin/';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'timesheet_bootstrap.php';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
