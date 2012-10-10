@@ -62,13 +62,10 @@ class Projects_Controller extends Current_Timelog_Form_Controller {
 			// reassign timelog for form if it's invalid
 			if(get_class($obj) != 'Project') $obj = new Project();
 			
-			// save failed - redisplay form
-			$this->display('/'.$this->_uri_segment.'/form', array(
-					'project' => $obj,
-					'departments' => $this->_user->getVisibleProjects($this->_project_factory),
-					'teams' => $this->_user->getVisibleTeams($this->_team_factory),
-					'error' => 'Error saving project: '.$e->getMessage()
-			));
+			$this->_heading = 'Save Project';
+			$this->_message = $e->getMessage();
+			$this->_body = $this->_timesheet->getProjectFormHtml($obj);
+			$this->display2();
 		}
 	}
 }

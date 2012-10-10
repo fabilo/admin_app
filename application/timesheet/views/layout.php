@@ -40,6 +40,8 @@
 			<div id="LeftCol" class="table-cell relative">
 				<?php if (isset($heading)): ?><h2 id="Heading"><?php echo $heading ?></h2><?php endif ?>
 				<div id="Content">
+
+					<?php if (isset($message)): ?><p class="message"><?php echo $message ?></p><?php endif ?>
 					<?php echo $body ?>
 				</div>
 			</div>
