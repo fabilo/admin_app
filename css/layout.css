@@ -63,6 +63,34 @@ input.text, textarea { padding: 2px; border: 1px solid #ccc; }
 	.inlineLabel label { position: absolute; top: 6px; left: 6px; }
 select { text-align: center; }
 
+.button { 
+	color: #808080; text-decoration: none; text-transform: capitalize;
+	padding: 3px; border-radius: 2px; border: 0 none; cursor: pointer; 
+	background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#ccc)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #f0f0f0,  #ccc);
+	text-shadow: 1px 1px 0px #fff; 
+	box-shadow: 0px 1px 1px #666;
+}
+/* When button is being pressed */
+.button .button:active {
+	color: #999;
+	text-shadow: 1px 1px 0px #f0f0f0; 
+	background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#d0d0d0)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #fafafa,  #d0d0d0);
+	box-shadow: inset 0px 0px 3px #666;
+}
+	/** Red delete button **/
+	input.red { 
+		background: -webkit-gradient(linear, left top, left bottom, from(#faa), to(#f22)); /* for webkit browsers */
+		background: -moz-linear-gradient(top,  #faa,  #f22);
+		color: #900; 
+		text-shadow: 1px 1px 0px #F99;
+	}
+	input.red:active { 
+		background: #f66;
+		box-shadow: inset 0px 0px 5px #300;
+	}
+
 ::-webkit-input-placeholder { color: #ccc; }
 :-moz-placeholder { color: #ccc; }
 :-ms-input-placeholder { color: #ccc; }
@@ -75,21 +103,12 @@ select { text-align: center; }
 	.timelogForm .startStop { width: 100%; }
 	.timelogForm .border { border: 1px solid #CCCCCC; border-radius: 2px 2px 2px 2px; padding: 3px; }
 	/* Default button style */
-	.timelogForm .button { 
-		color: #808080; text-decoration: none; text-transform: capitalize;
-		padding: 3px; border-radius: 2px; border: 0 none; cursor: pointer; 
+	#RightCol .button { 
+		color: #808080;
 		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd)); /* for webkit browsers */
 		background: -moz-linear-gradient(top,  #fff,  #ddd);
 		text-shadow: 1px 1px 0px #fff; 
 		box-shadow: 0px 1px 1px #666;
-	}
-	/* When button is being pressed */
-	.timelogForm .button:active {
-		color: #999;
-		text-shadow: 1px 1px 0px #f0f0f0; 
-		background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#d0d0d0)); /* for webkit browsers */
-		background: -moz-linear-gradient(top,  #fafafa,  #d0d0d0);
-		box-shadow: inset 0px 0px 3px #666;
 	}
 
 /* Header */
@@ -126,7 +145,7 @@ select { text-align: center; }
 #RightCol { width: 300px; padding: 0 10px; }
 
 /* Buttons */
-.button { 
+h2 .button { 
 	padding: 6px 10px 2px 6px; background: #e0e0e0;  
 	color: #808080; text-decoration: none; 
 	text-transform: capitalize;
