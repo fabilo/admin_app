@@ -62,6 +62,20 @@ switch (ENVIRONMENT) {
 		$db['default']['password'] = '';
 		$db['default']['database'] = 'admin';
 		break;
+		
+	case 'production-fabilo':
+		$db['default']['hostname'] = 'mysql.dh.chasethesun.net.nz';
+		$db['default']['username'] = 'fabilo_timelog';
+		$db['default']['password'] = 'hourglass';
+		$db['default']['database'] = 'fabilo_timelog_php';
+		break;
+		
+	case 'production-cts':
+		$db['default']['hostname'] = 'mysql.dh.chasethesun.net.nz';
+		$db['default']['username'] = 'fabilo_timelog';
+		$db['default']['password'] = 'hourglass';
+		$db['default']['database'] = 'timelog_cts_php';
+		break;
 
 	default: 
 		throw new Exception(ENVIRONMENT.' environment not setup in database config.');

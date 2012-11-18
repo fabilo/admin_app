@@ -10,7 +10,7 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	 * Display list of timelogs
 	 */
 	public function index() {
-		$this->week();
+		redirect('timelogs/week');
 	}
 	
 	/** 

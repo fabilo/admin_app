@@ -24,7 +24,7 @@
 		<script src="javascript/<?php echo $js_filename ?>.js"></script>
 	<?php endforeach ?>
 </head>
-<body>
+<body class="layout <?php echo implode(' ', $uri_segments) ?> <?php echo implode('-', $uri_segments) ?>">
 <div id="Header">
 	<h1>Timesheet</h1>
 	<ul id="MainNavigation" class="clearfix">
@@ -32,6 +32,7 @@
 		<li<?php echo (basename($top_uri) == 'projects') ? ' class="current"' : '' ?>><a href="<?php echo site_url('projects') ?>">Projects</a></li>
 		<li<?php echo (basename($top_uri) == 'categories') ? ' class="current"' : '' ?>><a href="<?php echo site_url('categories') ?>">Categories</a></li>
 		<li<?php echo (basename($top_uri) == 'reports') ? ' class="current"' : '' ?>><a href="<?php echo site_url('reports') ?>">Reports</a></li>
+		<li><a href="<?php echo site_url('users/logout') ?>">Logout</a></li>
 	</ul>
 </div>
 <div id="Layout">
@@ -46,7 +47,9 @@
 				</div>
 			</div>
 			<div id="RightCol" class="table-cell relative">
-				<?php echo $current_timelog_form ?>
+				<div class="block-container">
+					<?php echo $current_timelog_form ?>
+				</div>
 			</div>
 		</div>
 	</div>

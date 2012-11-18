@@ -44,6 +44,10 @@ $route['reports(.*)'] = 'reports_controller$1';
 $route['categories(.*)'] = 'categories_controller$1';
 
 $route['default_controller'] = "timelogs_controller";
+
+// define default authentication methods
+$route['users(.*)'] = 'users_controller$1';
+
 $route['404_override'] = '';
 
 

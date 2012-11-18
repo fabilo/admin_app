@@ -15,8 +15,9 @@ function initSidebarForm() {
 		// prevent the form posting the form
 		e.preventDefault();
 
-		// display loading icon
-		$(this).append('<p class="saving align-center">Saving.<blink>.</blink></p>');
+		// display saving feedback to user (if not displaying already).
+		if ($('#RightCol .saving').length == 0) $($('#RightCol .block-container')).append('<p class="saving align-center">Saving.<blink>.</blink></p>');
+		else $('#RightCol .saving').replaceWith('<p class="saving align-center">Saving.<blink>.</blink></p>');
 
 		// capture post string before we disable the inputs
 		var postString = $(this).serialize();
@@ -27,13 +28,12 @@ function initSidebarForm() {
 			url: $(this).attr('action'), 
 			data: postString, 
 			success: function(data) {
-				if (data == 'success') {
-					// output was success - remove loading message
-					$('#TimelogSidebarForm .saving').fadeOut(1500);
-				}
-				else {
-					// update form in sidebar
-					$('#RightCol').html(data);
+				// request complete - remove saving message
+				$('#RightCol .saving').fadeOut(1500);
+				
+				if (data != 'success') {
+					// returning html - update form in sidebar
+					$('#TimelogSidebarForm').replaceWith(data);
 					// reimplement form submit events
 					initSidebarForm();
 				}
