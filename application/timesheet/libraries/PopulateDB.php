@@ -14,9 +14,9 @@ define('BASEPATH', 'lol');
 define('ENVIRONMENT', 'development');
 
 // get config file
-require('../config/database.php');
+require(dirname($_SERVER['SCRIPT_NAME']).'/../config/database.php');
 // setupd db
-$db = new PDO('mysql:host='.$db['default']['hostname'].';dbname=admin', $db['default']['username'], $db['default']['password']);
+$db = new PDO('mysql:host='.$db['default']['hostname'].';dbname='.$db['default']['database'], $db['default']['username'], $db['default']['password']);
 
 // truncate tables
 $db->query('TRUNCATE TABLE timelogs');
@@ -133,7 +133,7 @@ $dummyTimelogs = array(
 );
 
 // loop last 30 days
-for ($i=0; $i<=60; $i++) {
+for ($i=1; $i<=60; $i++) {
 	$time = strtotime("-$i day");
 	// echo date('Y-m-d D', $time).' '.(date('N',$time) < 6)."\n";
 	if (date('N',$time) < 6) {

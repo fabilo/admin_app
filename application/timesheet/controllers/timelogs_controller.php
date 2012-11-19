@@ -10,6 +10,29 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 	 * Display list of timelogs
 	 */
 	public function index() {
+		if ($this->config->config['demo'] && !$this->session->userdata('skipIntro')) {
+			redirect('timelogs/intro');
+		} 
+		redirect('timelogs/week');
+	}
+	
+	/**
+	 * Display intro instructions to user
+	 */
+	public function intro() {
+		// set html layout template
+		$this->_layout_view = 'layout_simple';
+		$this->_heading = 'Quick introduction';
+		$this->_body = $this->load->view('intro', '', true);
+		$this->display2();
+	}
+	
+	/**
+	 * Skip intro and don't come back
+	 */
+	public function skip_intro() {
+		// set session flag to skip intro in future
+		$this->session->set_userdata('skipIntro', true);
 		redirect('timelogs/week');
 	}
 	

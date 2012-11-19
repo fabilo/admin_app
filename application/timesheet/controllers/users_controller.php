@@ -49,6 +49,7 @@ class Users_Controller extends Base_CI_Admin_Controller {
 	public function logout() { 
 		// remove user_id from session
 		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('skipIntro');
 		redirect('/');
 	}
 }

@@ -24,7 +24,7 @@
 		<script src="javascript/<?php echo $js_filename ?>.js"></script>
 	<?php endforeach ?>
 </head>
-<body class="simpleLayout <?php echo implode(' ', $uri_segments) ?> <?php echo implode('-', $uri_segments) ?>">
+<body class="simpleLayout <?php echo implode(' ', $uri_segments) ?> <?php echo implode('-', $uri_segments) ?> <?php if (isset($demo)) echo 'demo' ?>">
 <div id="Layout">
 	<?php if (isset($heading)): ?><h2 id="Heading"><?php echo $heading ?></h2><?php endif ?>
 	<div id="Content">

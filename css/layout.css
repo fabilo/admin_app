@@ -42,7 +42,7 @@ body .list tbody tr:hover td { background: #ffc; }
 	.list .hours { width: 40px; }
 	.list .project, .list .category { min-width: 120px; }
 	.list .archived { font-style: italic; color: #999; }
-.list .day-total { font-weight: bold; color: #444; }
+.list .day-total { font-weight: bold; color: #444; cursor: pointer; }
 .list .timelog td:first-child { background: none; border: 0 none; border-right: 1px solid #ccc; }
 .list .timelog td { font-size: 9pt; padding: 1px 6px; font-size: 8pt; line-height: 1.2em; vertical-align: middle }
 	.list tbody tr.timelog:nth-child(odd) td { border-top: 0px none; }
@@ -211,5 +211,8 @@ body .ui-widget, .ui-widget-content { line-height: 1.2em; font-size: 9pt; }
 .simpleLayout #LoginFormContainer label { width: 35%; }
 .simpleLayout.users-login #Content { width: 350px; }
 .simpleLayout.users-login #Content form .formRowActions { padding-left: 35%; }
-
+.simpleLayout.demo.users-login #Layout { min-height: 340px; background-image: url(../images/login-bg.png); background-repeat: no-repeat; background-position: center 156px;}
 .simpleLayout.users-login .message { background: #e5e5e5; border: 1px solid #ccc; font-size: 0.9em; padding: 8px; color: #666; margin-bottom: 12px; }
+
+/* Intro */
+.timelogs-intro #Content { padding: 0px; width: 906px; line-height: 0px; }
