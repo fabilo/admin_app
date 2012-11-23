@@ -32,11 +32,13 @@ body .list tbody tr:hover td { background: #ffc; }
 	.list tr:hover .hidden { visibility: visible;}
 .list { width: 100%; border-collapse: separate; }
 .list td, .list th { border-bottom: 1px solid #e0e0e0; line-height: 18px; padding: 2px 6px; color: #444; }
+.list td { text-align: right; }
+.list tr th:first-child, .list tr td:first-child { text-align: left;}
 .list tbody tr:nth-child(odd) td { background-color:#f0f0f0; border-top: 1px solid #fff; }
 .list tbody tr:nth-child(even) td { background-color:#fff; padding-top: 3px; }
 
 /* Timelog list specifics */
-.list thead tr th { text-align: left; font-weight: bold; vertical-align: bottom; }
+.list thead tr th { text-align: center; font-weight: bold; vertical-align: bottom; }
 	.list .date { width: 54px; white-space: nowrap; }
 	.list .time { width: 40px; }
 	.list .hours { width: 40px; }
@@ -159,9 +161,17 @@ select { text-align: center; }
 	
 	/* Main Navigation */
 	#MainNavigation { position: absolute; right: 20px; bottom: 0px; }
-	#MainNavigation li { float: left; margin-right: 2px; }
+	#MainNavigation li { float: left; margin-right: 2px; position: relative; }
 		#MainNavigation li a { color: #333; text-decoration: none; padding: 7px 10px 4px; background: #ccc; display: block; }
 		#MainNavigation li.current a { background: #fff; color: #666; }
+		/* Dropdowns */
+		#MainNavigation li ul { position: absolute; top: 26px; left: -10px; z-index: 100; width: 140px; box-shadow: 0px 3px 8px #666; }
+			#MainNavigation li ul li { display: block; width: 100%; }
+				#MainNavigation li ul li a, #MainNavigation li.current ul li a { background: #e0e0e0; font-size: 0.8em; display: block; width: 100%; border-bottom: 1px solid #ccc; border-top: 1px solid #f0f0f0;  }
+				#MainNavigation li ul li a:hover { background: #f0f0f0; }
+			#MainNavigation li .sf-with-ul { padding-right: 14px;}
+				#MainNavigation li .sf-with-ul .sf-sub-indicator { right: 4px; }
+
 
 /* Layout */
 /*#Layout { padding: 10px; }*/
