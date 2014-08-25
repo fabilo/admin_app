@@ -36,7 +36,8 @@ function initSidebarForm() {
 				
 				if (data != 'success') {
 					// returning html - update form in sidebar
-					$('#TimelogSidebarForm').replaceWith(data);
+					$('#TimelogSidebarForm').replaceWith(data);	
+					
 					// reimplement form submit events
 					initSidebarForm();
 				}
@@ -68,6 +69,14 @@ function initSidebarForm() {
 			$('#TimelogSidebarForm #SubmitHiddenInput').attr('value','');
 			// form is valid, submit
 			$('#TimelogSidebarForm').submit();
+		}
+	});
+	
+	// cycle inputs to get first with no value
+	$('#TimelogSidebarForm *').filter(':input').each(function(){
+		if (this.type != 'hidden' && this.type != 'submit' && this.value == '') {
+			this.focus();
+			return false; // break out of loop
 		}
 	});
 }
