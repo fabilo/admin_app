@@ -32,7 +32,7 @@ body .list tbody tr:hover td { background: #ffc; }
 	.list tr:hover .hidden { visibility: visible;}
 .list { width: 100%; border-collapse: separate; }
 .list td, .list th { border-bottom: 1px solid #e0e0e0; line-height: 18px; padding: 2px 6px; color: #444; }
-.list td { text-align: right; }
+.report  td { text-align: right; }
 .list tr th:first-child, .list tr td:first-child { text-align: left;}
 .list tbody tr:nth-child(odd) td { background-color:#f0f0f0; border-top: 1px solid #fff; }
 .list tbody tr:nth-child(even) td { background-color:#fff; padding-top: 3px; }
@@ -91,6 +91,8 @@ input.text, textarea { padding: 2px; border: 1px solid #ccc; }
 		#RightCol form #EndTime, #RightCol form .formRowActions .floatRight { float: right !important; }
 		#RightCol #StartTime, #RightCol #EndTime, #RightCol .formRowActions .button { margin-top: 0; width: 49%; float: left; clear: none; }
 		#RightCol form .formRowAction:after { content: "."; display: block; clear: both; visibility: hidden; }
+
+	#RightCol .error { color: red; font-weight: bold; }
 
 select { text-align: center; }
 

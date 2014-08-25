@@ -151,16 +151,21 @@ class Timelogs_Controller extends Current_Timelog_Form_Controller {
 			}
 		}
 		catch (Exception $e) {
-			$this->flash_message('Failed saving timelog: '.$e->getMessage());
-
-			// reassign timelog for form if it's invalid
-			if(isset($timelog) && (get_class($timelog) == 'Timelog')) {
-				redirect('/timelogs/edit/'.$timelog->getId(), 'refresh');
+			if ($this->_isAjax) {
+				$this->output->set_status_header('400');
+				echo 'Failed saving timelog: '.$e->getMessage();
 			}
 			else {
-				redirect('/timelogs/add', 'refresh');
-			}
-			
+				$this->flash_message('Failed saving timelog: '.$e->getMessage());
+
+				// reassign timelog for form if it's invalid
+				if(isset($timelog) && (get_class($timelog) == 'Timelog')) {
+					redirect('/timelogs/edit/'.$timelog->getId(), 'refresh');
+				}
+				else {
+					redirect('/timelogs/add', 'refresh');
+				}	
+			}		
 		}
 	}
 	

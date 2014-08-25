@@ -18,8 +18,8 @@ class Reports_Controller extends Current_Timelog_Form_Controller {
 		// setup previous week link
 		if ($week <= 2) {
 			// rollback to final week of previous year
-			$prevWeek = 52;
-			$prevYear = $week -1;
+			$prevWeek = 53;
+			$prevYear = $year-1;
 		}
 		else {
 			// rollback to previous week
@@ -29,7 +29,7 @@ class Reports_Controller extends Current_Timelog_Form_Controller {
 		$prevLink = '<a href="'.site_url('reports/clarity/'.$prevYear.'/'.$prevWeek).'"><img class="bw-toggle prev-next" src="images/icons/resultset_previous-bw.png" alt="<" title="Previous Week"/></a> ';
 		
 		// setup next week link
-		if ($week >= 52) {
+		if ($week >= 53) {
 			// roll forward to first week of next year
 			$nextYear = $year +1;
 			$nextWeek = 1;
@@ -58,8 +58,8 @@ class Reports_Controller extends Current_Timelog_Form_Controller {
 		// setup previous week link
 		if ($week <= 2) {
 			// rollback to final week of previous year
-			$prevWeek = 52;
-			$prevYear = $week -1;
+			$prevWeek = 53;
+			$prevYear = $year-1;
 		}
 		else {
 			// rollback to previous week
@@ -69,7 +69,7 @@ class Reports_Controller extends Current_Timelog_Form_Controller {
 		$prevLink = '<a href="'.site_url('reports/category/'.$prevYear.'/'.$prevWeek).'"><img class="bw-toggle prev-next" src="images/icons/resultset_previous-bw.png" alt="<" title="Previous Week"/></a> ';
 		
 		// setup next week link
-		if ($week >= 52) {
+		if ($week >= 53) {
 			// roll forward to first week of next year
 			$nextYear = $year +1;
 			$nextWeek = 1;
@@ -83,6 +83,20 @@ class Reports_Controller extends Current_Timelog_Form_Controller {
 		
 		$this->_heading = $prevLink.$year.' Category Report for week '.$week.$nextLink;
 		$this->_body = $this->_timelog_report->getCategoryReportForWeekHtml($week, $year);
+		$this->display2();
+	}
+
+	/**
+	 * Display report of sum of overtime performed for a period of time
+	 */
+	public function overtime() {
+		$start_date = $this->input->get('start_date');
+		if (!$start_date) $start_date = date('Y-m-01');
+		$end_date = $this->input->get('end_date');
+		if (!$end_date) $end_date = date('Y-m-d', strtotime('yesterday'));
+		$user_id = $this->_user->getId();
+		$this->_heading = 'Overtime report';
+		$this->_body = $this->_timelog_report->getOvertimeReportForDateRangeHtml($start_date, $end_date, $user_id);
 		$this->display2();
 	}
 }

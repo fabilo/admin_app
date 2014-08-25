@@ -15,6 +15,9 @@ function initSidebarForm() {
 		// prevent the form posting the form
 		e.preventDefault();
 
+		// remove any previous error messages
+		$('#RightCol .error').remove();
+
 		// display saving feedback to user (if not displaying already).
 		if ($('#RightCol .saving').length == 0) $($('#RightCol .block-container')).append('<p class="saving align-center">Saving.<blink>.</blink></p>');
 		else $('#RightCol .saving').replaceWith('<p class="saving align-center">Saving.<blink>.</blink></p>');
@@ -29,7 +32,7 @@ function initSidebarForm() {
 			data: postString, 
 			success: function(data) {
 				// request complete - remove saving message
-				$('#RightCol .saving').fadeOut(1500);
+				$('#RightCol .saving').html('Save successful').fadeOut(1500);
 				
 				if (data != 'success') {
 					// returning html - update form in sidebar
@@ -43,8 +46,17 @@ function initSidebarForm() {
 					// now reload item in list
 					refreshTimelog($('#DateInput').val());
 				}
+			}, 
+			statusCode: {
+				400: function(data) {
+					// remove saving text
+					$('#RightCol .saving').remove();
+
+					// insert error message below form 
+					$('#RightCol').append('<p class="error">'+data.responseText+'</p>');
+				}
 			}
-		});
+		})
 	});
 
 	// setup the form to save on change 
